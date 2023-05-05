@@ -1,4 +1,5 @@
-$nployeePurple: #8c52ff;
+$mainPurple: #8c52ff;
+$mainHoverPurple: #7243d1;
 
 .main-wrapper {
   font-family: system-ui;
@@ -29,15 +30,6 @@ $nployeePurple: #8c52ff;
   }
 }
 
-.login-btn {
-  width: 12vw;
-  height: 5vh;
-  cursor: pointer;
-  background-color: $nployeePurple;
-  border: none;
-  margin-bottom: 1.5em;
-}
-
 .auth-inputs {
   display: flex;
   flex-direction: column;
@@ -54,22 +46,86 @@ $nployeePurple: #8c52ff;
     font-size: 16px;
   }
   .common-input:focus {
-    outline: 0.5px solid $nployeePurple
+    outline: 0.5px solid $mainPurple;
   }
 }
 
 .login-btn {
+  width: 12vw;
+  height: 5vh;
   margin-top: 20px;
   font-size: 16px;
   width: 20vw;
-  border-radius: 40px;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: $mainPurple;
+  border: none;
 }
 
 .login-btn:hover {
-  opacity: 0.8;
+  background-color: $mainHoverPurple;
+  transition: ease all 0.2s;
 }
 
 .main-logo {
   width: 6vw;
   border-radius: 50%;
 }
+
+.hr-text {
+    line-height: 1em;
+    position: relative;
+    outline: 0;
+    border: 0;
+    color: black;
+    text-align: center;
+    height: 1.5em;
+    opacity: 0.5;
+    &:before {
+      content: "";
+      // use the linear-gradient for the fading effect
+      // use a solid background color for a solid bar
+      background: linear-gradient(to right, transparent, #818078, transparent);
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 100%;
+      height: 1px;
+    }
+    &:after {
+      content: attr(data-content);
+      position: relative;
+      display: inline-block;
+      color: black;
+  
+      padding: 0 0.5em;
+      line-height: 1.5em;
+      // this is really the only tricky part, you need to specify the background color of the container element...
+      color: #818078;
+      background-color: #fcfcfa;
+    }
+  }
+
+  .google-btn-wrapper {
+    margin-bottom: 2em;
+  }
+
+  .google-btn {
+    width: 20vw !important;
+    border-radius: 30px !important;
+    border: 0.5px solid #ccc !important;
+    background-color: #fff !important;
+    color: #414141 !important;
+    box-shadow: none !important;
+    
+    :nth-child(1) {
+        width: 42px !important;
+        height: 42px !important;
+        top: 1.6px !important;
+        left: 11px !important;
+        position: relative;
+    }
+
+    
+  }

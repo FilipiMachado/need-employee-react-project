@@ -1,7 +1,9 @@
 import { useState } from "react";
 
-import { LoginAPI, /* RegisterAPI */ } from "../api/AuthAPI";
+import { LoginAPI /* RegisterAPI */ } from "../api/AuthAPI";
+
 import NployeeLogo from "../assets/main-logo.png";
+import GoogleButton from "react-google-button";
 import "../Sass/LoginComponent.scss";
 
 export default function LoginComponent() {
@@ -60,6 +62,19 @@ export default function LoginComponent() {
         >
           Sign In
         </button>
+        <hr
+          style={{ padding: "10px 150px" }}
+          className="hr-text"
+          data-content="OR"
+        />
+        <div className="google-btn-wrapper">
+          <GoogleButton
+            className="google-btn"
+            onClick={() => {
+              console.log("Google button clicked!");
+            }}
+          />
+        </div>
       </div>
     </div>
   );
