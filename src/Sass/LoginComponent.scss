@@ -71,61 +71,57 @@ $mainHoverPurple: #7243d1;
 .main-logo {
   width: 6vw;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .hr-text {
-    line-height: 1em;
+  line-height: 1em;
+  position: relative;
+  outline: 0;
+  border: 0;
+  color: black;
+  text-align: center;
+  height: 1.5em;
+  opacity: 0.5;
+  &:before {
+    content: "";
+    background: linear-gradient(to right, transparent, #818078, transparent);
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 1px;
+  }
+  &:after {
+    content: attr(data-content);
     position: relative;
-    outline: 0;
-    border: 0;
+    display: inline-block;
     color: black;
-    text-align: center;
-    height: 1.5em;
-    opacity: 0.5;
-    &:before {
-      content: "";
-      // use the linear-gradient for the fading effect
-      // use a solid background color for a solid bar
-      background: linear-gradient(to right, transparent, #818078, transparent);
-      position: absolute;
-      left: 0;
-      top: 50%;
-      width: 100%;
-      height: 1px;
-    }
-    &:after {
-      content: attr(data-content);
-      position: relative;
-      display: inline-block;
-      color: black;
-  
-      padding: 0 0.5em;
-      line-height: 1.5em;
-      // this is really the only tricky part, you need to specify the background color of the container element...
-      color: #818078;
-      background-color: #fcfcfa;
-    }
-  }
 
-  .google-btn-wrapper {
-    margin-bottom: 2em;
+    padding: 0 0.5em;
+    line-height: 1.5em;
+    color: #818078;
+    background-color: #fcfcfa;
   }
+}
 
-  .google-btn {
-    width: 20vw !important;
-    border-radius: 30px !important;
-    border: 0.5px solid #ccc !important;
-    background-color: #fff !important;
-    color: #414141 !important;
-    box-shadow: none !important;
-    
-    :nth-child(1) {
-        width: 42px !important;
-        height: 42px !important;
-        top: 1.6px !important;
-        left: 11px !important;
-        position: relative;
-    }
+.google-btn-wrapper {
+  margin-bottom: 2em;
+}
 
-    
+.google-btn {
+  width: 20vw !important;
+  border-radius: 30px !important;
+  border: 0.5px solid #ccc !important;
+  background-color: #fff !important;
+  color: #414141 !important;
+  box-shadow: none !important;
+
+  :nth-child(1) {
+    width: 42px !important;
+    height: 42px !important;
+    top: 1.6px !important;
+    left: 11px !important;
+    position: relative;
   }
+}
