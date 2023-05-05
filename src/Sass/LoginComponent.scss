@@ -1,66 +1,75 @@
+$nployeePurple: #8c52ff;
+
 .main-wrapper {
-    font-family: system-ui;
-    padding: 1em;
-    background-color: #fff;
+  font-family: system-ui;
+  padding: 1em;
+  background-color: #fff;
 }
 
 .img-wrapper {
-    margin-bottom: 2em;
+  margin-bottom: 2em;
 }
 
 .login-wrapper {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    width: 28vw;
-    margin: 0 auto;
-    align-items: center;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    .heading {
-      font-weight: 500;
-      font-size: 2em;
-    }
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 28vw;
+  margin: 0 auto;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  .heading {
+    font-weight: 500;
+    font-size: 2em;
+  }
 
-    .sub-heading {
-        margin-top: -20px;
-    }
+  .sub-heading {
+    margin-top: -20px;
+  }
 }
 
 .login-btn {
-    width: 12vw;
-    height: 5vh;
-    cursor: pointer;
-    background-color: #8C52FF;
-    border: none;
-    margin-bottom: 1.5em;
+  width: 12vw;
+  height: 5vh;
+  cursor: pointer;
+  background-color: $nployeePurple;
+  border: none;
+  margin-bottom: 1.5em;
 }
 
 .auth-inputs {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 20vw;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 20vw;
 
-    .common-input {
-        height: 20px;
-        padding: 10px;
-        background-color: #fff;
-        border-radius: 5px;
-        border: 0.5px solid #c7c7c7;
-        color: #414141;
-        font-size: 16px;
-    }
-    .common-input:focus {
-        outline: 0.5px solid #8C52FF;
-    }
+  .common-input {
+    height: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 3px;
+    border: 0.5px solid #c7c7c7;
+    color: #414141;
+    font-size: 16px;
+  }
+  .common-input:focus {
+    outline: 0.5px solid $nployeePurple
+  }
 }
 
 .login-btn {
-    margin-top: 20px;
+  margin-top: 20px;
+  font-size: 16px;
+  width: 20vw;
+  border-radius: 40px;
+}
+
+.login-btn:hover {
+  opacity: 0.8;
 }
 
 .main-logo {
-    width: 6vw;
-    border-radius: 50%;
+  width: 6vw;
+  border-radius: 50%;
 }

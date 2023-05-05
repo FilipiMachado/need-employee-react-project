@@ -28,6 +28,7 @@ export default function LoginComponent() {
       <div className="img-wrapper">
         <img src={NployeeLogo} alt="" className="main-logo" />
       </div>
+
       <div className="login-wrapper">
         <h1 className="heading">Sign In</h1>
         <p className="sub-heading">Search for new jobs or maybe employees</p>
@@ -39,7 +40,7 @@ export default function LoginComponent() {
             }}
             className="common-input"
             placeholder="Enter your Email"
-            type="text"
+            type="email"
           />
           <input
             onChange={(e) => {
@@ -47,7 +48,7 @@ export default function LoginComponent() {
             }}
             className="common-input"
             placeholder="Enter your Password"
-            type="text"
+            type="password"
           />
         </div>
         <button
