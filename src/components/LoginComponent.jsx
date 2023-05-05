@@ -1,45 +1,65 @@
 import { useState } from "react";
 
-import { LoginAPI } from "../api/AuthAPI";
+import { LoginAPI, /* RegisterAPI */ } from "../api/AuthAPI";
+import NployeeLogo from "../assets/main-logo.png";
 import "../Sass/LoginComponent.scss";
 
 export default function LoginComponent() {
   const [credentials, setCredentials] = useState({});
-  const loginHandler = () => {
-    let res = LoginAPI(credentials.email, credentials.password)
-    console.log(res)
+  const loginHandler = async () => {
+    try {
+      let res = await LoginAPI(credentials.email, credentials.password);
+      console.log(res?.user);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
+  /* const registerHandler = () => {
+    try {
+      let res = RegisterAPI(credentials.email, credentials.password);
+    } catch (error) {
+      console.log(error);
+    }
+  }; */
+
   return (
-    <div className="login-wrapper">
-      <h1>Login Component</h1>
-      <div className="auth-inputs">
-        <input
+    <div className="main-wrapper">
+      <div className="img-wrapper">
+        <img src={NployeeLogo} alt="" className="main-logo" />
+      </div>
+      <div className="login-wrapper">
+        <h1 className="heading">Sign In</h1>
+        <p className="sub-heading">Search for new jobs or maybe employees</p>
+
+        <div className="auth-inputs">
+          <input
+            onChange={(e) => {
+              setCredentials({ ...credentials, email: e.target.value });
+            }}
+            className="common-input"
+            placeholder="Enter your Email"
+            type="text"
+          />
+          <input
+            onChange={(e) => {
+              setCredentials({ ...credentials, password: e.target.value });
+            }}
+            className="common-input"
+            placeholder="Enter your Password"
+            type="text"
+          />
+        </div>
+        <button
           onChange={(e) => {
             setCredentials({ ...credentials, email: e.target.value });
           }}
-          className="common-input"
-          placeholder="Enter your Email"
-          type="text"
-        />
-        <input
-          onChange={(e) => {
-            setCredentials({ ...credentials, password: e.target.value });
-          }}
-          className="common-input"
-          placeholder="Enter your Password"
-          type="text"
-        />
+          onClick={loginHandler}
+          className="login-btn"
+        >
+          Sign In
+        </button>
       </div>
-      <button
-        onChange={(e) => {
-          setCredentials({ ...credentials, email: e.target.value });
-        }}
-        onClick={loginHandler}
-        className="login-btn"
-      >
-        Log in to NEmployee
-      </button>
     </div>
   );
 }
