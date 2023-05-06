@@ -4,7 +4,6 @@ $mainHoverPurple: #7243d1;
 .main-wrapper {
   font-family: system-ui;
   padding: 1em;
-  background-color: #fff;
 }
 
 .img-wrapper {
@@ -124,4 +123,13 @@ $mainHoverPurple: #7243d1;
     left: 11px !important;
     position: relative;
   }
+}
+
+.join-now {
+  color: $mainPurple;
+  cursor: pointer;
+}
+
+.go-to-signup {
+    
 }

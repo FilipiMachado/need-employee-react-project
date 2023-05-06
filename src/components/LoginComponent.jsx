@@ -1,21 +1,30 @@
 import { useState } from "react";
 
-import { LoginAPI /* RegisterAPI */ } from "../api/AuthAPI";
+import { LoginAPI, GoogleSignInAPI /* RegisterAPI */ } from "../api/AuthAPI";
+import GoogleButton from "react-google-button";
+import { toast } from "react-toastify";
 
 import NployeeLogo from "../assets/main-logo.png";
-import GoogleButton from "react-google-button";
 import "../Sass/LoginComponent.scss";
 
 export default function LoginComponent() {
   const [credentials, setCredentials] = useState({});
+
   const loginHandler = async () => {
     try {
       let res = await LoginAPI(credentials.email, credentials.password);
-      console.log(res?.user);
-    } catch (error) {
-      console.log(error);
+      console.log(res)
+      toast.success("Signed In Successfully!")
+    } catch (err) {
+      console.log(err)
+      toast.error("Please check your credentials!")
     }
   };
+
+  const googleSignIn = () => {
+    let res = GoogleSignInAPI()
+    console.log(res)
+  }
 
   /* const registerHandler = () => {
     try {
@@ -70,10 +79,10 @@ export default function LoginComponent() {
         <div className="google-btn-wrapper">
           <GoogleButton
             className="google-btn"
-            onClick={() => {
-              console.log("Google button clicked!");
-            }}
+            onClick={googleSignIn}
           />
+
+          <p className="go-to-signup">Dont have an account yet? <span className="join-now">Join Now</span></p>
         </div>
       </div>
     </div>
