@@ -5,20 +5,23 @@ import {
   signInWithPopup
 } from "firebase/auth";
 import { auth } from "../firebaseConfig";
+import { toast } from "react-toastify";
 
 export const LoginAPI = (email, password) => {
   try {
-    signInWithEmailAndPassword(auth, email, password);
-  } catch (error) {
-    console.log(error);
+    let res = signInWithEmailAndPassword(auth, email, password);
+    return res
+  } catch (err) {
+    console.log(err);
   }
 };
 
 export const RegisterAPI = (email, password) => {
   try {
-    createUserWithEmailAndPassword(auth, email, password);
-  } catch (error) {
-    console.log(error);
+    let res = createUserWithEmailAndPassword(auth, email, password);
+    return res
+  } catch (err) {
+    return err
   }
 };
 
@@ -26,8 +29,10 @@ export const GoogleSignInAPI = () => {
   try {
     let googleProvider = new GoogleAuthProvider()
     let res = signInWithPopup(auth, googleProvider)
+    toast.success("Account created successfully!")
     return res
-  } catch (error) {
-    return error
+  } catch (err) {
+    toast.error("Something wrong happened while creating your google account!")
+    return err
   }
 };

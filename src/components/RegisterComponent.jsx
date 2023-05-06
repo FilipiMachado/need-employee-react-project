@@ -1,32 +1,24 @@
 import { useState } from "react";
 
-import { LoginAPI, GoogleSignInAPI } from "../api/AuthAPI";
-import GoogleButton from "react-google-button";
+import { RegisterAPI } from "../api/AuthAPI";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom"
 import NployeeLogo from "../assets/main-logo.png";
-import "../Sass/LoginComponent.scss";
+import "../Sass/RegisterComponent.scss";
 
-export default function LoginComponent() {
-  const navigate = useNavigate()
+export default function RegisterComponent() {
+  const navigate = useNavigate();
   const [credentials, setCredentials] = useState({});
 
-  const loginHandler = async () => {
+  const registerHandler = async () => {
     try {
-      await LoginAPI(credentials.email, credentials.password);
-      toast.success("Signed In Successfully!")
+      await RegisterAPI(credentials.email, credentials.password);
+      toast.success("Account created successfully!");
       navigate("/home");
     } catch (err) {
-      console.log(err)
-      toast.error("Please check your credentials!")
+      toast.error("Cannot create your account. Please check the fields!");
     }
   };
-
-  const googleSignIn = () => {
-    let res = GoogleSignInAPI()
-    navigate("/home");
-    console.log(res)
-  }
 
   return (
     <div className="main-wrapper">
@@ -35,7 +27,7 @@ export default function LoginComponent() {
       </div>
 
       <div className="login-wrapper">
-        <h1 className="heading">Sign In</h1>
+        <h1 className="heading">Register</h1>
         <p className="sub-heading">Search for new jobs or maybe employees</p>
 
         <div className="auth-inputs">
@@ -44,7 +36,7 @@ export default function LoginComponent() {
               setCredentials({ ...credentials, email: e.target.value });
             }}
             className="common-input"
-            placeholder="Enter your Email"
+            placeholder="Email"
             type="email"
           />
           <input
@@ -52,7 +44,7 @@ export default function LoginComponent() {
               setCredentials({ ...credentials, password: e.target.value });
             }}
             className="common-input"
-            placeholder="Enter your Password"
+            placeholder="Password (8 or more characters)"
             type="password"
           />
         </div>
@@ -60,10 +52,10 @@ export default function LoginComponent() {
           onChange={(e) => {
             setCredentials({ ...credentials, email: e.target.value });
           }}
-          onClick={loginHandler}
+          onClick={registerHandler}
           className="login-btn"
         >
-          Sign In
+          Join
         </button>
         <hr
           style={{ padding: "10px 150px" }}
@@ -71,15 +63,10 @@ export default function LoginComponent() {
           data-content="OR"
         />
         <div className="google-btn-wrapper">
-          <GoogleButton
-            className="google-btn"
-            onClick={googleSignIn}
-          />
-
           <p className="go-to-signup">
-            Dont have an account yet? 
-            <span onClick={() => navigate('/register')} className="join-now">
-              Join Now
+            Already have an account?
+            <span onClick={() => navigate("/")} className="join-now">
+              Sign In
             </span>
           </p>
         </div>
