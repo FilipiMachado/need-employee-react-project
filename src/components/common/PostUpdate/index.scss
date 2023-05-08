@@ -1,9 +1,37 @@
-.post-status {
+$mainPurple: #8c52ff;
+$mainHoverPurple: #7243d1;
+
+.post-status-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+
+  .post-status {
     width: 80%;
     height: 100px;
     background-color: #fff;
-}
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-.post-status-wrapper {
-    
+    .show-modal-btn {
+      width: 15%;
+      height: 3em;
+      text-align: center;
+      background-color: $mainPurple;
+      border: none;
+      outline: none;
+      border-radius: 20px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .show-modal-btn:hover {
+      background-color: $mainHoverPurple;
+      transition: ease all 0.2s;
+    }
+  }
 }

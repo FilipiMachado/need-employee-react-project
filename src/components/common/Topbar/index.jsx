@@ -25,6 +25,7 @@ export default function Topbar() {
       <div className="icons-wrapper">
         <AiOutlineSearch size={25} className="outline-icon" />
         <AiOutlineHome
+          title="Home"
           size={25}
           className="outline-icon"
           onClick={() => {
@@ -32,6 +33,7 @@ export default function Topbar() {
           }}
         />
         <AiOutlineUserSwitch
+          title="Profile"
           size={25}
           className="outline-icon"
           onClick={() => {
