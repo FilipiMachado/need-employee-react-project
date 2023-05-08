@@ -7,13 +7,13 @@ const NewPostModal = ({ modalOpen, setModalOpen }) => {
   return (
     <>
       <Modal
+        title="Create a post"
         centered
         open={modalOpen}
         onOk={() => setModalOpen(false)}
         onCancel={() => setModalOpen(false)}
       >
-        <p>some content</p>
-        <p>some content</p>
+        <input className="new-post-modal-input" placeholder="Connect to others through your thoughts." type="text"/>
       </Modal>
     </>
   );
