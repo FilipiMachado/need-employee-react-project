@@ -21,5 +21,5 @@ export default function Home() {
     });
   }, [navigate]);
 
-  return !loading ? <Loader /> : <HomeComponent />;
+  return loading ? <Loader /> : <HomeComponent />;
 }
