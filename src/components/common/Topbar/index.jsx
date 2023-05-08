@@ -1,7 +1,10 @@
 import {
+  AiOutlineBell,
   AiOutlineHome,
-  AiOutlineUserSwitch,
+  AiOutlineMessage,
   AiOutlineSearch,
+  AiOutlineUser,
+  AiOutlineUserSwitch,
 } from "react-icons/ai";
 import { BsFillBriefcaseFill } from "react-icons/bs";
 
@@ -13,9 +16,13 @@ export default function Topbar() {
     <div className="topbar-main">
       <img className="main-logo" src={NployeeLogo} alt="Main Logo" />
       <div className="icons-wrapper">
-        <AiOutlineHome size={25} />
-        <AiOutlineUserSwitch size={25} />
-        <BsFillBriefcaseFill size={25} />
+        <AiOutlineSearch size={25} className="outline-icon" />
+        <AiOutlineHome size={25} className="outline-icon" />
+        <AiOutlineUserSwitch size={25} className="outline-icon" />
+        <BsFillBriefcaseFill size={25} className="outline-icon" />
+        <AiOutlineMessage size={25} className="outline-icon" />
+        <AiOutlineBell size={25} className="outline-icon" />
+        <AiOutlineUser size={25} className="outline-icon user-icon" />
       </div>
     </div>
   );
