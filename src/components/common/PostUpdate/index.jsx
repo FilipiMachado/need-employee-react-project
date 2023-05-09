@@ -1,16 +1,26 @@
 import { useState, useMemo } from "react";
+
 import NewPostModal from "../Modal";
+import PostsCard from "../PostsCard";
+
 import { PostStatusData, getPosts } from "../../../api/FirestoreAPI";
+import { getCurrentTimeStamp } from "../../../helpers/useMoment";
 
 import "./index.scss";
 
 export default function PostStatus() {
+  let userEmail = localStorage.getItem("userEmail");
   const [newPostModalOpen, setNewPostModalOpen] = useState(false);
   const [status, setStatus] = useState("");
   const [allStatus, setAllStatus] = useState([]);
 
   const sendStatus = async () => {
-    await PostStatusData(status);
+    let object = {
+      status: status,
+      timeStamp: getCurrentTimeStamp("LLL"),
+      email: userEmail,
+    };
+    await PostStatusData(object);
     await setNewPostModalOpen(false);
     await setStatus("");
   };
@@ -18,8 +28,6 @@ export default function PostStatus() {
   useMemo(() => {
     getPosts(setAllStatus);
   }, []);
-
-  console.log(allStatus);
 
   return (
     <div className="post-status-wrapper">
@@ -31,7 +39,7 @@ export default function PostStatus() {
           New Post
         </button>
       </div>
-      
+
       <NewPostModal
         status={status}
         setStatus={setStatus}
@@ -41,12 +49,8 @@ export default function PostStatus() {
       />
 
       <div>
-        {allStatus.map((status) => {
-          return (
-            <>
-              <p>{status.status}</p>
-            </>
-          );
+        {allStatus.map((posts, idx) => {
+          return <PostsCard key={idx} posts={posts} />;
         })}
       </div>
     </div>

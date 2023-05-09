@@ -1,5 +1,15 @@
-export default function PostsCard() {
+import PropTypes from "prop-types";
+
+import "./index.scss";
+
+export default function PostsCard({ posts }) {
   return (
-    <div>index</div>
-  )
+    <div className="posts-card">
+      <p className="status-text">{posts.status}</p>
+    </div>
+  );
 }
+
+PostsCard.propTypes = {
+  posts: PropTypes.object.isRequired,
+};

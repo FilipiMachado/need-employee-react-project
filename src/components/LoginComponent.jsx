@@ -3,30 +3,32 @@ import { useState } from "react";
 import { LoginAPI, GoogleSignInAPI } from "../api/AuthAPI";
 import GoogleButton from "react-google-button";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import NployeeLogo from "../assets/main-logo.png";
 import "../Sass/LoginComponent.scss";
 
 export default function LoginComponent() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [credentials, setCredentials] = useState({});
 
   const loginHandler = async () => {
     try {
-      await LoginAPI(credentials.email, credentials.password);
-      toast.success("Signed In Successfully!")
+      let res = await LoginAPI(credentials.email, credentials.password);
+      toast.success("Signed In Successfully!");
+      localStorage.setItem("userEmail", res.user.email);
       navigate("/home");
     } catch (err) {
-      console.log(err)
-      toast.error("Please check your credentials!")
+      console.log(err);
+      toast.error("Please check your credentials!");
     }
   };
 
   const googleSignIn = () => {
-    let res = GoogleSignInAPI()
-    navigate("/home");
+    let res = GoogleSignInAPI();
     console.log(res)
-  }
+    //localStorage.setItem("userEmail", res.user.email);
+    navigate("/home");
+  };
 
   return (
     <div className="main-wrapper">
@@ -71,14 +73,11 @@ export default function LoginComponent() {
           data-content="OR"
         />
         <div className="google-btn-wrapper">
-          <GoogleButton
-            className="google-btn"
-            onClick={googleSignIn}
-          />
+          <GoogleButton className="google-btn" onClick={googleSignIn} />
 
           <p className="go-to-signup">
-            Dont have an account yet? 
-            <span onClick={() => navigate('/register')} className="join-now">
+            Dont have an account yet?
+            <span onClick={() => navigate("/register")} className="join-now">
               Join Now
             </span>
           </p>

@@ -29,7 +29,7 @@ export const GoogleSignInAPI = () => {
   try {
     let googleProvider = new GoogleAuthProvider()
     let res = signInWithPopup(auth, googleProvider)
-    toast.success("Account created successfully!")
+    toast.success("Logged in successfully!")
     return res
   } catch (err) {
     toast.error("Something wrong happened while creating your google account!")
