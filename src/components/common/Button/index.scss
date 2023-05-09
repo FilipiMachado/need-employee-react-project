@@ -1,0 +1,22 @@
+$mainPurple: #8c52ff;
+$mainHoverPurple: #7243d1;
+
+.common-btn {
+  width: 200px;
+  height: 30px;
+  cursor: pointer;
+  background-color: whitesmoke;
+  border: 2px solid $mainHoverPurple;
+  color: $mainPurple;
+  border-radius: 30px;
+  font-family: system-ui;
+  font-weight: 600;
+  font-size: 14px;
+  margin: 7px 0;
+}
+
+.common-btn:hover {
+  background-color: rgb(230, 230, 230);
+  border: 2px solid $mainHoverPurple;
+  color: $mainPurple;
+}

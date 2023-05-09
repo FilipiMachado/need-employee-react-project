@@ -2,7 +2,8 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
-  signInWithPopup
+  signInWithPopup,
+  signOut
 } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 import { toast } from "react-toastify";
@@ -36,3 +37,12 @@ export const GoogleSignInAPI = () => {
     return err
   }
 };
+
+export const onLogout = () => {
+  try {
+    signOut(auth);
+  } catch (err) {
+    toast.error("Something wrong happened while logging out!")
+    return err
+  }
+}

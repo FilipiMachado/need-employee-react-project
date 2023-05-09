@@ -34,3 +34,10 @@
   border-radius: 50%;
   padding: 5px;
 }
+
+.popup-position {
+  position: absolute;
+  right: 10px;
+  top: 65px;
+  z-index: 99;
+}

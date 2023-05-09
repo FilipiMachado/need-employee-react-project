@@ -1,3 +1,6 @@
+import { useState } from "react";
+
+import ProfilePopup from "../ProfilePopup";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -14,13 +17,27 @@ import "./index.scss";
 import NployeeLogo from "../../../assets/main-logo.png";
 
 export default function Topbar() {
+  const [popupVisible, setPopupVisible] = useState(false);
   const navigate = useNavigate();
+
   const redirectTo = (route) => {
     navigate(route);
   };
 
+  const displayPopup = () => {
+    setPopupVisible(!popupVisible);
+  };
+
   return (
     <div className="topbar-main">
+      {popupVisible ? (
+        <div className="popup-position">
+          <ProfilePopup />
+        </div>
+      ) : (
+        <></>
+      )}
+
       <img className="main-logo" src={NployeeLogo} alt="Main Logo" />
       <div className="icons-wrapper">
         <AiOutlineSearch size={25} className="outline-icon" />
@@ -43,7 +60,11 @@ export default function Topbar() {
         <BsFillBriefcaseFill size={25} className="outline-icon" />
         <AiOutlineMessage size={25} className="outline-icon" />
         <AiOutlineBell size={25} className="outline-icon" />
-        <AiOutlineUser size={25} className="outline-icon user-icon" />
+        <AiOutlineUser
+          size={25}
+          className="outline-icon user-icon"
+          onClick={displayPopup}
+        />
       </div>
     </div>
   );
