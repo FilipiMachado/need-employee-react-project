@@ -7,19 +7,19 @@ import "./index.scss";
 export default function PostStatus() {
   const [newPostModalOpen, setNewPostModalOpen] = useState(false);
   const [status, setStatus] = useState("");
-  const [allStatus, setAllStatus] = useState([])
+  const [allStatus, setAllStatus] = useState([]);
 
   const sendStatus = async () => {
     await PostStatusData(status);
     await setNewPostModalOpen(false);
-    await setStatus("")
+    await setStatus("");
   };
 
   useMemo(() => {
-    getPosts(setAllStatus)
-  }, [])
+    getPosts(setAllStatus);
+  }, []);
 
-  console.log(allStatus)
+  console.log(allStatus);
 
   return (
     <div className="post-status-wrapper">
@@ -31,6 +31,7 @@ export default function PostStatus() {
           New Post
         </button>
       </div>
+      
       <NewPostModal
         status={status}
         setStatus={setStatus}
@@ -38,6 +39,16 @@ export default function PostStatus() {
         setModalOpen={setNewPostModalOpen}
         sendStatus={sendStatus}
       />
+
+      <div>
+        {allStatus.map((status) => {
+          return (
+            <>
+              <p>{status.status}</p>
+            </>
+          );
+        })}
+      </div>
     </div>
   );
 }
