@@ -3,7 +3,7 @@ import { useState, useMemo } from "react";
 import NewPostModal from "../Modal";
 import PostsCard from "../PostsCard";
 
-import { PostStatusData, getPosts } from "../../../api/FirestoreAPI";
+import { postStatusData, getPosts } from "../../../api/FirestoreAPI";
 import { getCurrentTimeStamp } from "../../../helpers/useMoment";
 
 import "./index.scss";
@@ -20,7 +20,7 @@ export default function PostStatus() {
       timeStamp: getCurrentTimeStamp("LLL"),
       email: userEmail,
     };
-    await PostStatusData(object);
+    await postStatusData(object);
     await setNewPostModalOpen(false);
     await setStatus("");
   };

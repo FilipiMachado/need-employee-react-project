@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { RegisterAPI } from "../api/AuthAPI";
+import { postUserData } from "../api/FirestoreAPI";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import NployeeLogo from "../assets/main-logo.png";
@@ -13,10 +14,15 @@ export default function RegisterComponent() {
   const registerHandler = async () => {
     try {
       let res = await RegisterAPI(credentials.email, credentials.password);
+      postUserData({
+        name: credentials.username,
+        email: credentials.email,
+      });
       toast.success("Account created successfully!");
       localStorage.setItem("userEmail", res.user.email);
       navigate("/home");
     } catch (err) {
+      console.log(err)
       toast.error("Cannot create your account. Please check the fields!");
     }
   };
@@ -32,6 +38,14 @@ export default function RegisterComponent() {
         <p className="sub-heading">Search for new jobs or maybe employees</p>
 
         <div className="auth-inputs">
+          <input
+            onChange={(e) => {
+              setCredentials({ ...credentials, username: e.target.value });
+            }}
+            className="common-input"
+            placeholder="Your name"
+            type="text"
+          />
           <input
             onChange={(e) => {
               setCredentials({ ...credentials, email: e.target.value });
