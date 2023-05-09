@@ -26,7 +26,6 @@ export const getPosts = (setAllStatus) => {
 };
 
 export const postUserData = (object) => {
-  console.log(object)
   addDoc(userRef, object)
     .then(() => {})
     .catch((err) => {
@@ -34,16 +33,16 @@ export const postUserData = (object) => {
     });
 };
 
-/* export const getCurrentUser = (setCurrentUser) => {
+export const getCurrentUser = () => {
   onSnapshot(userRef, (response) => {
-    setCurrentUser(
+    console.log(
       response.docs
         .map((docs) => {
-          return { ...docs.data(), id: docs.id };
+          return { ...docs.data(), userId: docs.id };
         })
-        .filter((item) => {
+        /* .filter((item) => {
           return item.email === localStorage.getItem("userEmail");
-        })[0]
+        })[0] */
     );
   });
-}; */
+};
