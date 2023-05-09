@@ -5,13 +5,14 @@ import "./index.scss";
 
 export default function PostStatus() {
   const [newPostModalOpen, setNewPostModalOpen] = useState(false);
+  const [status, setStatus] = useState('')
 
   return (
     <div className="post-status-wrapper">
       <div className="post-status">
         <button className="show-modal-btn" onClick={() => setNewPostModalOpen(true)}>New Post</button>
       </div>
-      <NewPostModal modalOpen={newPostModalOpen} setModalOpen={setNewPostModalOpen}/>
+      <NewPostModal status={status} setStatus={setStatus} modalOpen={newPostModalOpen} setModalOpen={setNewPostModalOpen}/>
     </div>
   );
 }
