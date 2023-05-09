@@ -3,7 +3,13 @@ import PropTypes from "prop-types";
 
 import "./index.scss";
 
-const NewPostModal = ({ modalOpen, setModalOpen, setStatus }) => {
+const NewPostModal = ({
+  modalOpen,
+  setModalOpen,
+  sendStatus,
+  status,
+  setStatus,
+}) => {
   return (
     <>
       <Modal
@@ -13,18 +19,23 @@ const NewPostModal = ({ modalOpen, setModalOpen, setStatus }) => {
         onOk={() => setModalOpen(false)}
         onCancel={() => setModalOpen(false)}
         footer={[
-          <Button key="submit" type="primary" disabled>
+          <Button
+            onClick={sendStatus}
+            key="submit"
+            type="primary"
+            disabled={status.length > 0 ? false : true}
+          >
             Post
           </Button>,
         ]}
       >
         <input
           onChange={(e) => setStatus(e.target.value)}
+          value={status}
           className="new-post-modal-input"
           placeholder="Connect to others through your thoughts."
           type="text"
         />
-        <button className="add-post-btn">Post</button>
       </Modal>
     </>
   );
@@ -33,6 +44,8 @@ const NewPostModal = ({ modalOpen, setModalOpen, setStatus }) => {
 NewPostModal.propTypes = {
   modalOpen: PropTypes.bool.isRequired,
   setModalOpen: PropTypes.func.isRequired,
+  status: PropTypes.string.isRequired,
+  sendStatus: PropTypes.func.isRequired,
   setStatus: PropTypes.func.isRequired,
 };
 
