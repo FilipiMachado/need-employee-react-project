@@ -33,16 +33,16 @@ export const postUserData = (object) => {
     });
 };
 
-export const getCurrentUser = () => {
+export const getCurrentUser = (setCurrentUser) => {
   onSnapshot(userRef, (response) => {
-    console.log(
+    setCurrentUser(
       response.docs
         .map((docs) => {
           return { ...docs.data(), userId: docs.id };
         })
-        /* .filter((item) => {
+        .filter((item) => {
           return item.email === localStorage.getItem("userEmail");
-        })[0] */
+        })[0]
     );
   });
 };

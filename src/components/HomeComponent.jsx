@@ -1,9 +1,15 @@
-import PostStatus from "./common/PostUpdate";
+import PropTypes from "prop-types";
 
-export default function HomeComponent() {
+import PostStatus from "./common/PostStatus";
+
+export default function HomeComponent({ currentUser }) {
   return (
     <div className="home-component">
-      <PostStatus />
+      <PostStatus currentUser={currentUser}/>
     </div>
   );
 }
+
+HomeComponent.propTypes = {
+  currentUser: PropTypes.object.isRequired,
+};

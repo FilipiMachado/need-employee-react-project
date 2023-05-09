@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import PropTypes from "prop-types";
 
 import NewPostModal from "../Modal";
 import PostsCard from "../PostsCard";
@@ -8,7 +9,7 @@ import { getCurrentTimeStamp } from "../../../helpers/useMoment";
 
 import "./index.scss";
 
-export default function PostStatus() {
+export default function PostStatus({ currentUser }) {
   let userEmail = localStorage.getItem("userEmail");
   const [newPostModalOpen, setNewPostModalOpen] = useState(false);
   const [status, setStatus] = useState("");
@@ -19,7 +20,9 @@ export default function PostStatus() {
       status: status,
       timeStamp: getCurrentTimeStamp("LLL"),
       email: userEmail,
+      userName: currentUser.name,
     };
+    console.log(object)
     await postStatusData(object);
     await setNewPostModalOpen(false);
     await setStatus("");
@@ -56,3 +59,7 @@ export default function PostStatus() {
     </div>
   );
 }
+
+PostStatus.propTypes = {
+  currentUser: PropTypes.object.isRequired,
+};
