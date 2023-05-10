@@ -13,7 +13,7 @@ export default function ProfileComponent({ currentUser }) {
   return (
     <div>
       {isEdit ? (
-        <ProfileEdit onEdit={onEdit} />
+        <ProfileEdit currentUser={currentUser} onEdit={onEdit} />
       ) : (
         <ProfileCard currentUser={currentUser} onEdit={onEdit} />
       )}

@@ -1,5 +1,5 @@
 import { firestore } from "../firebaseConfig";
-import { addDoc, collection, onSnapshot, getDocs } from "firebase/firestore";
+import { addDoc, collection, onSnapshot, getDocs, /* doc, updateDoc */ } from "firebase/firestore";
 import { toast } from "react-toastify";
 
 let postsRef = collection(firestore, "posts");
@@ -45,6 +45,9 @@ export const getCurrentUser = async (setCurrentUser) => {
   setCurrentUser(currentUser);
 };
 
+export const editProfile = () => {
+  
+}
 
 /* export const getCurrentUser = (setCurrentUser) => {
   onSnapshot(userRef, (response) => {

@@ -1,8 +1,20 @@
 import PropTypes from "prop-types";
+import { useState } from "react";
 
 import "./index.scss";
 
-export default function ProfileEdit({ onEdit }) {
+export default function ProfileEdit({ onEdit, currentUser }) {
+  const [editInputs, setEditInputs] = useState({});
+  const getInput = (e) => {
+    let { name, value } = e.target;
+    let input = { [name]: value };
+    setEditInputs({ ...editInputs, ...input });
+  };
+
+  const updateProfile = () => {
+    console.log(currentUser.userId);
+  };
+
   return (
     <div className="profile-card">
       <div className="edit-btn-wrapper">
@@ -11,18 +23,45 @@ export default function ProfileEdit({ onEdit }) {
         </button>
       </div>
 
-      <input type="text" placeholder="Name" />
+      <div className="edit-profile-inputs">
+        <input onChange={getInput} type="text" placeholder="Name" name="name" />
 
-      <input type="text" placeholder="Headline" />
-      <input type="text" placeholder="Location" />
+        <input
+          onChange={getInput}
+          type="text"
+          placeholder="Headline"
+          name="headline"
+        />
+        <input
+          onChange={getInput}
+          type="text"
+          placeholder="Location"
+          name="location"
+        />
 
-      <input type="text" placeholder="Company" />
+        <input
+          onChange={getInput}
+          type="text"
+          placeholder="Company"
+          name="company"
+        />
 
-      <input type="text" placeholder="College" />
+        <input
+          onChange={getInput}
+          type="text"
+          placeholder="College"
+          name="college"
+        />
+
+        <button onClick={updateProfile} className="save-btn">
+          Save Profile
+        </button>
+      </div>
     </div>
   );
 }
 
 ProfileEdit.propTypes = {
   onEdit: PropTypes.func.isRequired,
+  currentUser: PropTypes.object.isRequired,
 };
