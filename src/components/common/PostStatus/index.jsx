@@ -6,10 +6,12 @@ import PostsCard from "../PostsCard";
 
 import { postStatusData, getPosts } from "../../../api/FirestoreAPI";
 import { getCurrentTimeStamp } from "../../../helpers/useMoment";
+import { getUniqueId } from "../../../helpers/getUniqueId";
 
 import "./index.scss";
 
 export default function PostStatus({ currentUser }) {
+  console.log(getUniqueId())
   let userEmail = localStorage.getItem("userEmail");
   const [newPostModalOpen, setNewPostModalOpen] = useState(false);
   const [status, setStatus] = useState("");
@@ -21,8 +23,8 @@ export default function PostStatus({ currentUser }) {
       timeStamp: getCurrentTimeStamp("LLL"),
       email: userEmail,
       userName: currentUser.name,
+      postId: getUniqueId(),
     };
-    console.log(object)
     await postStatusData(object);
     await setNewPostModalOpen(false);
     await setStatus("");

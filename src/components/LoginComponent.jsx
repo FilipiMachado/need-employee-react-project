@@ -24,8 +24,7 @@ export default function LoginComponent() {
   };
 
   const googleSignIn = () => {
-    let res = GoogleSignInAPI();
-    console.log(res)
+    GoogleSignInAPI();
     //localStorage.setItem("userEmail", res.user.email);
     navigate("/home");
   };

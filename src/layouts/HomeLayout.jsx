@@ -7,8 +7,6 @@ import { getCurrentUser } from "../api/FirestoreAPI";
 export default function HomeLayout() {
   const [currentUser, setCurrentUser] = useState({});
 
-  console.log(currentUser)
-
   useMemo(() => {
     getCurrentUser(setCurrentUser);
   }, []);
