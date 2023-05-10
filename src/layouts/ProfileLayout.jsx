@@ -1,17 +1,14 @@
 import { useMemo, useState } from "react";
 import { getCurrentUser } from "../api/FirestoreAPI";
-
-import Profile from "../Pages/Profile";
 import Topbar from "../components/common/Topbar";
+import Profile from "../Pages/Profile";
 
 export default function ProfileLayout() {
   const [currentUser, setCurrentUser] = useState({});
 
   useMemo(() => {
     getCurrentUser(setCurrentUser);
-    console.log(currentUser)
   }, []);
-
   return (
     <div>
       <Topbar />
@@ -19,4 +16,3 @@ export default function ProfileLayout() {
     </div>
   );
 }
-
