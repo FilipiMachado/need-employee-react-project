@@ -1,5 +1,5 @@
 import { firestore } from "../firebaseConfig";
-import { addDoc, collection, onSnapshot } from "firebase/firestore";
+import { addDoc, collection, onSnapshot, getDocs } from "firebase/firestore";
 import { toast } from "react-toastify";
 
 let postsRef = collection(firestore, "posts");
@@ -33,7 +33,20 @@ export const postUserData = (object) => {
     });
 };
 
-export const getCurrentUser = (setCurrentUser) => {
+export const getCurrentUser = async (setCurrentUser) => {
+  const response = await getDocs(userRef);
+  const currentUser = response.docs
+    .map((docs) => {
+      return { ...docs.data(), userId: docs.id };
+    })
+    .filter((item) => {
+      return item.email === localStorage.getItem("userEmail");
+    })[0];
+  setCurrentUser(currentUser);
+};
+
+
+/* export const getCurrentUser = (setCurrentUser) => {
   onSnapshot(userRef, (response) => {
     setCurrentUser(
       response.docs
@@ -45,4 +58,4 @@ export const getCurrentUser = (setCurrentUser) => {
         })[0]
     );
   });
-};
+}; */
