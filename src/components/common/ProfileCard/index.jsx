@@ -5,15 +5,16 @@ import "./index.scss";
 export default function ProfileCard({ currentUser, onEdit }) {
   return (
     <>
-      {<div className="profile-card">
+      <div className="profile-card">
         <div className="edit-btn-wrapper">
           <button onClick={onEdit} className="edit-btn">
             Edit
           </button>
         </div>
         <h3 className="username-text">{currentUser.name}</h3>
-        <p className="email-text">{currentUser.email}</p>
-      </div>}
+        <p className="heading-text">{currentUser.headline}</p>
+        <p className="location-text">{currentUser.location}</p>
+      </div>
     </>
   );
 }

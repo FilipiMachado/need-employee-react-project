@@ -28,11 +28,18 @@ $mainHoverPurple: #7243d1;
   }
 
   .edit-btn {
-    background-color: #fff;
+    background-color: $mainPurple;
     outline: none;
     border: none;
-    color: red;
+    color: #fff;
     cursor: pointer;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+
+  .edit-btn:hover {
+    background-color: $mainHoverPurple;
   }
 
   .edit-profile-inputs {
@@ -40,6 +47,13 @@ $mainHoverPurple: #7243d1;
     margin-top: 40px;
     gap: 20px;
     justify-content: center;
+
+    .title-text {
+        text-align: center;
+        font-size: 26px;
+        color: #212121;
+        font-weight: 600;
+    }
 
     input {
       width: 35vw;

@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 
+import { editProfile } from "../../../api/FirestoreAPI";
+
 import "./index.scss";
 
 export default function ProfileEdit({ onEdit, currentUser }) {
@@ -11,21 +13,28 @@ export default function ProfileEdit({ onEdit, currentUser }) {
     setEditInputs({ ...editInputs, ...input });
   };
 
-  const updateProfile = () => {
-    console.log(currentUser.userId);
+  const updateProfile = async () => {
+    await editProfile(currentUser?.userId, editInputs);
+    await onEdit();
   };
 
   return (
     <div className="profile-card">
       <div className="edit-btn-wrapper">
         <button onClick={onEdit} className="edit-btn">
-          Go Back
+          Cancel
         </button>
       </div>
 
       <div className="edit-profile-inputs">
-        <input onChange={getInput} type="text" placeholder="Name" name="name" />
+        <span className="title-text">Update Profile</span>
 
+        <input 
+          onChange={getInput} 
+          type="text" 
+          placeholder="Name" 
+          name="name" 
+        />
         <input
           onChange={getInput}
           type="text"
@@ -54,7 +63,7 @@ export default function ProfileEdit({ onEdit, currentUser }) {
         />
 
         <button onClick={updateProfile} className="save-btn">
-          Save Profile
+          Save
         </button>
       </div>
     </div>
