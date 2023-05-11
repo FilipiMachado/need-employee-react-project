@@ -11,7 +11,7 @@ import { getUniqueId } from "../../../helpers/getUniqueId";
 import "./index.scss";
 
 export default function PostStatus({ currentUser }) {
-  console.log(getUniqueId())
+  console.log(getUniqueId());
   let userEmail = localStorage.getItem("userEmail");
   const [newPostModalOpen, setNewPostModalOpen] = useState(false);
   const [status, setStatus] = useState("");
