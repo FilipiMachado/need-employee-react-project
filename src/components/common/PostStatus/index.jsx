@@ -11,7 +11,6 @@ import { getUniqueId } from "../../../helpers/getUniqueId";
 import "./index.scss";
 
 export default function PostStatus({ currentUser }) {
-  console.log(getUniqueId());
   let userEmail = localStorage.getItem("userEmail");
   const [newPostModalOpen, setNewPostModalOpen] = useState(false);
   const [status, setStatus] = useState("");
@@ -54,9 +53,13 @@ export default function PostStatus({ currentUser }) {
       />
 
       <div>
-        {allStatus.map((posts, idx) => {
-          return <PostsCard key={idx} posts={posts} />;
-        })}
+        {allStatus.length > 0 ? (
+          allStatus.map((posts, idx) => {
+            return <PostsCard key={idx} posts={posts} />;
+          })
+        ) : (
+          <p className="no-posts-found">You have no posts yet. Wanna add a new one?</p>
+        )}
       </div>
     </div>
   );

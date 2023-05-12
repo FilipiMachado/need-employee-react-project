@@ -59,11 +59,14 @@
   }
 }
 
-.profile-status-main {
-  width: 50vw;
-  min-height: 20vh;
-  background-color: whitesmoke;
-  margin: 0px auto;
-  border-radius: 5px;
-  padding: 20px;
+.profile-posts-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.no-posts-found {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 400;
 }

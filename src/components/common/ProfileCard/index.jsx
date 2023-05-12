@@ -35,19 +35,25 @@ export default function ProfileCard({ currentUser, onEdit }) {
         </div>
       </div>
 
-      <div className="profile-status-main">
-        {allStatus.filter((item) => {
-          return item.userEmail === localStorage.getItem("userEmail");
-        }).length > 0 ? (
-          allStatus
-            .filter((item) => {
-              return item.userEmail === localStorage.getItem("userEmail");
-            })
-            .map((posts, idx) => {
-              return <PostsCard key={idx} posts={posts} />;
-            })
+      {/* <div className="profile-status-main">
+        {allStatus
+          .filter((item) => {
+            return item.userEmail === localStorage.getItem("userEmail");
+          })
+          .map((posts, idx) => {
+            return <PostsCard key={idx} posts={posts} />;
+          })}
+      </div> */}
+
+      <div className="profile-posts-container">
+        {allStatus.length > 0 ? (
+          allStatus.map((posts, idx) => {
+            return <PostsCard key={idx} posts={posts} />;
+          })
         ) : (
-          <p>Não há posts</p>
+          <p className="no-posts-found">
+            You have no posts yet. Wanna add a new one?
+          </p>
         )}
       </div>
     </>
