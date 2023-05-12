@@ -9,7 +9,6 @@ export default function HomeLayout() {
 
   useMemo(() => {
     getCurrentUser(setCurrentUser);
-    console.log(currentUser)
   }, []);
 
   return (

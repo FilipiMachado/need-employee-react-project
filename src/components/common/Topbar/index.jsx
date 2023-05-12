@@ -38,7 +38,7 @@ export default function Topbar() {
         <></>
       )}
 
-      <img className="main-logo" src={NployeeLogo} alt="Main Logo" />
+      <img onClick={() => navigate('/')} className="main-logo" src={NployeeLogo} alt="Main Logo" />
       <div className="icons-wrapper">
         <AiOutlineSearch size={25} className="outline-icon" />
         <AiOutlineHome

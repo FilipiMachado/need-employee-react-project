@@ -1,17 +1,34 @@
 import PropTypes from "prop-types";
 import { useState, useMemo } from "react";
-import { getPosts } from "../../../api/FirestoreAPI";
+import {
+  //getPosts,
+  getSingleStatus,
+  getSingleUser,
+} from "../../../api/FirestoreAPI";
+import { useLocation } from "react-router-dom";
 
 import PostsCard from "../PostsCard";
 
 import "./index.scss";
 
 export default function ProfileCard({ currentUser, onEdit }) {
+  let location = useLocation();
   const [allStatus, setAllStatus] = useState([]);
+  const [currentProfile, setCurrentProfile] = useState({});
 
   useMemo(() => {
-    getPosts(setAllStatus);
+    //getPosts(setAllStatus);
+
+    if (location?.state?.id) {
+      getSingleStatus(setAllStatus, location?.state?.id);
+    }
+
+    if (location?.state?.email) {
+      getSingleUser(setCurrentProfile, location?.state?.email);
+    }
   }, []);
+
+  console.log(currentProfile);
 
   return (
     <>

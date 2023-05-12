@@ -6,6 +6,8 @@ import {
   getDocs,
   doc,
   updateDoc,
+  query,
+  where,
 } from "firebase/firestore";
 import { toast } from "react-toastify";
 
@@ -57,11 +59,33 @@ export const editProfile = (userId, payload) => {
 
   updateDoc(userToEdit, payload)
     .then(() => {
-      toast.success("Profile updated successfully")
+      toast.success("Profile updated successfully");
     })
     .catch((err) => {
       console.log(err);
     });
+};
+
+export const getSingleStatus = (setAllStatus, id) => {
+  const singlePostQuery = query(postsRef, where("userId", "==", id));
+  onSnapshot(singlePostQuery, (response) => {
+    setAllStatus(
+      response.docs.map((docs) => {
+        return { ...docs.data(), id: docs.id };
+      })
+    );
+  });
+};
+
+export const getSingleUser = (setCurrentUser, email) => {
+  const singleUserQuery = query(userRef, where("email", "==", email));
+  onSnapshot(singleUserQuery, (response) => {
+    setCurrentUser(
+      response.docs.map((docs) => {
+        return { ...docs.data(), id: docs.id };
+      })
+    )[0];
+  });
 };
 
 /* export const getCurrentUser = (setCurrentUser) => {
