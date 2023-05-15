@@ -30,12 +30,12 @@ export default function ProfileEdit({ onEdit, currentUser }) {
         <span className="title-text">Update Profile</span>
 
         <label>Name</label>
-        <input 
-          onChange={getInput} 
-          type="text" 
-          placeholder="Name" 
+        <input
+          onChange={getInput}
+          type="text"
+          placeholder="Name"
           name="name"
-          value={editInputs.name} 
+          value={editInputs.name}
         />
 
         <label>Headline</label>
@@ -44,7 +44,7 @@ export default function ProfileEdit({ onEdit, currentUser }) {
           type="text"
           placeholder="Headline"
           name="headline"
-          value={editInputs.headline} 
+          value={editInputs.headline}
         />
 
         <label>Location</label>
@@ -53,7 +53,7 @@ export default function ProfileEdit({ onEdit, currentUser }) {
           type="text"
           placeholder="Location"
           name="location"
-          value={editInputs.location} 
+          value={editInputs.location}
         />
 
         <label>Company</label>
@@ -62,7 +62,7 @@ export default function ProfileEdit({ onEdit, currentUser }) {
           type="text"
           placeholder="Company"
           name="company"
-          value={editInputs.company} 
+          value={editInputs.company}
         />
 
         <label>College</label>
@@ -71,8 +71,25 @@ export default function ProfileEdit({ onEdit, currentUser }) {
           type="text"
           placeholder="College"
           name="college"
-          value={editInputs.college} 
+          value={editInputs.college}
         />
+
+        <label>Website</label>
+        <input
+          onChange={getInput}
+          type="text"
+          placeholder="Website"
+          name="website"
+          value={editInputs.website}
+        />
+
+        <label>About</label>
+        <textarea
+          placeholder="About me"
+          onChange={getInput}
+          name="aboutMe"
+          value={editInputs.aboutMe}
+        ></textarea>
 
         <button onClick={updateProfile} className="save-btn">
           Save
