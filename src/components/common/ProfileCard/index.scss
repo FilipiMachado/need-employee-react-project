@@ -3,75 +3,98 @@ $mainHoverPurple: #7243d1;
 
 .profile-card {
   width: auto;
-  min-height: 20vh;
+  height: auto;
   background-color: whitesmoke;
   margin: 30px;
   border-radius: 5px;
   padding: 20px;
   position: relative;
-
-  .profile-info-container {
+  .profile-info {
     display: flex;
     justify-content: space-between;
-    margin-top: 50px;
-    padding: 0px 20px;
-
-    .info-right-wrapper {
-      .college-text,
-      .company-text {
-        color: #000000e6;
+    .profile-image {
+      width: 200px;
+      height: 200px;
+      object-fit: contain;
+      border-radius: 50%;
+      border: 2px solid #cacaca;
+      padding: 5px;
+      cursor: pointer;
+    }
+    .right-info {
+      margin-top: 25px;
+      margin-right: 20px;
+      .college,
+      .company {
+        color: rgba(0, 0, 0, 0.9);
         font-size: 14px;
         font-weight: 600;
         line-height: 30px;
       }
 
-      .company-text {
+      .company {
         margin-top: -15px;
       }
     }
+
+    .edit-btn-wrapper {
+      position: absolute;
+      right: 20px;
+    }
+  
+    .edit-btn {
+      background-color: $mainPurple;
+      outline: none;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+  
+    .edit-btn:hover {
+      background-color: $mainHoverPurple;
+    }
   }
 
-  .username-text {
-    color: #000000e6;
+  .website {
+    color: $mainPurple !important;
+    -webkit-link: $mainPurple;
+  }
+  .skill-label {
     font-weight: 600;
-    font-size: 22px;
   }
-
-  .heading-text {
-    margin-top: -25px;
-    color: #000000e6;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 20px;
-  }
-
-  .location-text {
-  }
-
-  .edit-btn-wrapper {
+  .edit-btn {
     position: absolute;
     right: 20px;
+
+    .edit-icon {
+      cursor: pointer;
+      padding: 10px;
+    }
+
+    .edit-icon:hover {
+      background-color: rgb(197, 197, 197);
+      padding: 10px;
+      border-radius: 50%;
+    }
+  }
+  .userName {
+    color: rgba(0, 0, 0, 0.9);
+    font-weight: 600;
+    font-size: 24px;
+    margin-top: 10px;
   }
 
-  .edit-btn-icon {
-    /* background-color: #fff;
-    outline: none;
-    border: none;
-    color: red;
-    cursor: pointer; */
+  .heading {
+    margin-top: -25px;
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.9);
+    width: 320px;
+    line-height: 20px;
   }
-}
-
-.profile-posts-container {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-.no-posts-found {
-  text-align: center;
-  font-size: 20px;
-  font-weight: 400;
 }
 
 .edit-btn-icon {

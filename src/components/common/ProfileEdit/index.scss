@@ -48,10 +48,10 @@ $mainHoverPurple: #7243d1;
     justify-content: center;
 
     .title-text {
-        text-align: center;
-        font-size: 26px;
-        color: #212121;
-        font-weight: 600;
+      text-align: center;
+      font-size: 26px;
+      color: #212121;
+      font-weight: 600;
     }
 
     input {
@@ -73,7 +73,7 @@ $mainHoverPurple: #7243d1;
 
   .save-btn {
     height: 6vh;
-    margin-top: 20px;
+    margin-top: 20px !important;
     font-size: 16px;
     width: 20vw;
     border-radius: 30px;
@@ -88,4 +88,32 @@ $mainHoverPurple: #7243d1;
     background-color: $mainHoverPurple;
     transition: ease all 0.2s;
   }
+}
+
+.common-textarea {
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 3px;
+  border: 0.5px solid #c7c7c7;
+  color: #414141;
+  font-size: 16px;
+}
+
+.common-textarea:focus {
+  outline: 0.5px solid $mainPurple;
+}
+
+.edit-btn-icon {
+  font-size: 24px;
+  color: $mainPurple;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 20px;
+}
+
+.edit-btn-icon:hover {
+  color: #fff;
+  background-color: $mainPurple;
+  transition: ease all 0.3s;
 }

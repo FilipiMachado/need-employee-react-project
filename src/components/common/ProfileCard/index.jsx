@@ -1,25 +1,35 @@
 import PropTypes from "prop-types";
 import { useState, useMemo } from "react";
-import {
-  //getPosts,
-  getSingleStatus,
-  getSingleUser,
-} from "../../../api/FirestoreAPI";
-import { useLocation } from "react-router-dom";
-
+import { getSingleStatus, getSingleUser } from "../../../api/FirestoreAPI";
 import PostsCard from "../PostsCard";
-
-import { HiOutlinePencil } from 'react-icons/hi'
+import { HiOutlinePencil } from "react-icons/hi";
+import { useLocation } from "react-router-dom";
+//import FileUploadModal from "../FileUploadModal";
+//import { uploadImage as uploadImageAPI } from "../../../api/ImageUpload";
 import "./index.scss";
 
-export default function ProfileCard({ currentUser, onEdit }) {
+export default function ProfileCard({ onEdit, currentUser }) {
   let location = useLocation();
-  const [allStatus, setAllStatus] = useState([]);
+  const [allStatuses, setAllStatus] = useState([]);
   const [currentProfile, setCurrentProfile] = useState({});
+  //const [currentImage, setCurrentImage] = useState({});
+  /* const [progress, setProgress] = useState(0);
+  const [modalOpen, setModalOpen] = useState(false);
+  const getImage = (event) => {
+    setCurrentImage(event.target.files[0]);
+  };
+  console.log(currentProfile);
+  const uploadImage = () => {
+    uploadImageAPI(
+      currentImage,
+      currentUser.id,
+      setModalOpen,
+      setProgress,
+      setCurrentImage
+    );
+  }; */
 
   useMemo(() => {
-    //getPosts(setAllStatus);
-
     if (location?.state?.id) {
       getSingleStatus(setAllStatus, location?.state?.id);
     }
@@ -29,51 +39,115 @@ export default function ProfileCard({ currentUser, onEdit }) {
     }
   }, []);
 
-  console.log(currentProfile);
-
   return (
     <>
+      {/* <FileUploadModal
+        getImage={getImage}
+        uploadImage={uploadImage}
+        modalOpen={modalOpen}
+        setModalOpen={setModalOpen}
+        currentImage={currentImage}
+        progress={progress}
+      /> */}
       <div className="profile-card">
-        <div className="edit-btn-wrapper">
-          <HiOutlinePencil onClick={onEdit} className="edit-btn-icon" title="Edit Profile"/>
-          {/* <button onClick={onEdit} className="edit-btn">
-            Edit
-          </button> */}
-        </div>
+        {currentUser.id === location?.state?.id ? (
+          <div className="edit-btn-wrapper">
+            <HiOutlinePencil className="edit-btn-icon" onClick={onEdit} />
+          </div>
+        ) : (
+          <></>
+        )}
+        <div className="profile-info">
+          <div>
+            {/* <img
+              className="profile-image"
+              onClick={() => setModalOpen(true)}
+              src={
+                Object.values(currentProfile).length === 0
+                  ? currentUser.imageLink
+                  : currentProfile?.imageLink
+              }
+              alt="profile-image"
+            /> */}
+            <h3 className="userName">
+              {Object.values(currentProfile).length === 0
+                ? currentUser.name
+                : currentProfile?.name}
+            </h3>
+            <p className="heading">
+              {Object.values(currentProfile).length === 0
+                ? currentUser.headline
+                : currentProfile?.headline}
+            </p>
+            {(currentUser.city || currentUser.country) &&
+            (currentProfile?.city || currentProfile?.country) ? (
+              <p className="location">
+                {Object.values(currentProfile).length === 0
+                  ? `${currentUser.city}, ${currentUser.country} `
+                  : `${currentProfile?.city}, ${currentUser.country}`}
+              </p>
+            ) : (
+              <></>
+            )}
+            {currentUser.website || currentProfile?.website ? (
+              <a
+                rel="noreferrer"
+                className="website"
+                target="_blank"
+                href={
+                  Object.values(currentProfile).length === 0
+                    ? `${currentUser.website}`
+                    : currentProfile?.website
+                }
+              >
+                {Object.values(currentProfile).length === 0
+                  ? `${currentUser.website}`
+                  : currentProfile?.website}
+              </a>
+            ) : (
+              <></>
+            )}
+          </div>
 
-        <div className="profile-info-container">
-          <div className="info-left-wrapper">
-            <h3 className="username-text">{currentUser.name}</h3>
-            <p className="heading-text">{currentUser.headline}</p>
-            <p className="location-text">{currentUser.location}</p>
-          </div>
-          <div className="info-right-wrapper">
-            <p className="college-text">{currentUser.college}</p>
-            <p className="company-text">{currentUser.location}</p>
+          <div className="right-info">
+            <p className="college">
+              {Object.values(currentProfile).length === 0
+                ? currentUser.college
+                : currentProfile?.college}
+            </p>
+            <p className="company">
+              {Object.values(currentProfile).length === 0
+                ? currentUser.company
+                : currentProfile?.company}
+            </p>
           </div>
         </div>
+        <p className="about-me">
+          {Object.values(currentProfile).length === 0
+            ? currentUser.aboutMe
+            : currentProfile?.aboutMe}
+        </p>
+
+        {currentUser.skills || currentProfile?.skills ? (
+          <p className="skills">
+            <span className="skill-label">Skills</span>:&nbsp;
+            {Object.values(currentProfile).length === 0
+              ? currentUser.skills
+              : currentProfile?.skills}
+          </p>
+        ) : (
+          <></>
+        )}
       </div>
 
-      {/* <div className="profile-status-main">
-        {allStatus
-          .filter((item) => {
-            return item.userEmail === localStorage.getItem("userEmail");
-          })
-          .map((posts, idx) => {
-            return <PostsCard key={idx} posts={posts} />;
-          })}
-      </div> */}
-
-      <div className="profile-posts-container">
-        {allStatus.length > 0 ? (
-          allStatus.map((posts, idx) => {
-            return <PostsCard key={idx} posts={posts} />;
-          })
-        ) : (
-          <p className="no-posts-found">
-            You have no posts yet. Wanna add a new one?
-          </p>
-        )}
+      <div className="post-status-main">
+        {allStatuses?.map((posts) => {
+          return (
+            <div key={posts.id}>
+              <PostsCard posts={posts} />
+            </div>
+          );
+        })}
       </div>
     </>
   );

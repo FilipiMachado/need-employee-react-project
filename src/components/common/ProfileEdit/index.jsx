@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 
 import { editProfile } from "../../../api/FirestoreAPI";
+import { AiOutlineClose } from "react-icons/ai";
 
 import "./index.scss";
 
@@ -21,9 +22,7 @@ export default function ProfileEdit({ onEdit, currentUser }) {
   return (
     <div className="profile-card">
       <div className="edit-btn-wrapper">
-        <button onClick={onEdit} className="edit-btn">
-          Cancel
-        </button>
+        <AiOutlineClose onClick={onEdit} className="edit-btn"/>
       </div>
 
       <div className="edit-profile-inputs">
@@ -85,11 +84,23 @@ export default function ProfileEdit({ onEdit, currentUser }) {
 
         <label>About</label>
         <textarea
-          placeholder="About me"
+          className="common-textarea"
+          placeholder="About Me"
           onChange={getInput}
+          rows={4}
+          cols={5}
           name="aboutMe"
           value={editInputs.aboutMe}
         ></textarea>
+
+        <label>Skills</label>
+        <input
+          onChange={getInput}
+          type="text"
+          placeholder="Your Skills"
+          name="skills"
+          value={editInputs.skills}
+        />
 
         <button onClick={updateProfile} className="save-btn">
           Save
