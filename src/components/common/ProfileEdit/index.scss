@@ -45,7 +45,6 @@ $mainHoverPurple: #7243d1;
   .edit-profile-inputs {
     display: grid;
     margin-top: 40px;
-    gap: 20px;
     justify-content: center;
 
     .title-text {
@@ -56,6 +55,7 @@ $mainHoverPurple: #7243d1;
     }
 
     input {
+      margin-bottom: 20px;
       width: 35vw;
       height: 20px;
       padding: 10px;

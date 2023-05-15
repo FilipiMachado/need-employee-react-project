@@ -16,7 +16,7 @@ export default function ProfilePopup() {
       <p className="name">{currentUser?.name}</p>
       <p className="headline">{currentUser?.headline}</p>
       <Button
-        title="View Profile"
+        title="Profile"
         onClick={() =>
           navigate("/profile", {
             state: {

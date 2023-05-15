@@ -9,6 +9,7 @@ import { useLocation } from "react-router-dom";
 
 import PostsCard from "../PostsCard";
 
+import { HiOutlinePencil } from 'react-icons/hi'
 import "./index.scss";
 
 export default function ProfileCard({ currentUser, onEdit }) {
@@ -34,9 +35,10 @@ export default function ProfileCard({ currentUser, onEdit }) {
     <>
       <div className="profile-card">
         <div className="edit-btn-wrapper">
-          <button onClick={onEdit} className="edit-btn">
+          <HiOutlinePencil onClick={onEdit} className="edit-btn-icon" title="Edit Profile"/>
+          {/* <button onClick={onEdit} className="edit-btn">
             Edit
-          </button>
+          </button> */}
         </div>
 
         <div className="profile-info-container">
