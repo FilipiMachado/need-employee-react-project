@@ -1,3 +1,6 @@
+$mainPurple: #8c52ff;
+$mainHoverPurple: #7243d1;
+
 .like-container {
   display: flex;
   align-items: center;
@@ -10,4 +13,12 @@
     color: #000000cc;
     font-size: 14px;
   }
+}
+
+.liked-icon {
+  color: $mainHoverPurple;
+}
+
+.no-liked-icon {
+  color: $mainHoverPurple;
 }

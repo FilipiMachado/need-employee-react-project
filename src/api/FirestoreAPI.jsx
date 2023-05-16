@@ -9,6 +9,7 @@ import {
   query,
   where,
   setDoc,
+  deleteDoc,
 } from "firebase/firestore";
 import { toast } from "react-toastify";
 
@@ -68,11 +69,32 @@ export const editProfile = (userId, payload) => {
     });
 };
 
-export const likePost = (userId, postId) => {
+export const likePost = (userId, postId, liked) => {
   try {
     const docToLike = doc(likeRef, `${userId}_${postId}`);
+    if (liked) {
+      deleteDoc(docToLike);
+    } else {
+      setDoc(docToLike, { userId, postId });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-    setDoc(docToLike, { userId, postId });
+export const getLikesByUser = (userId, postId, setLiked, setLikesCount) => {
+  try {
+    let likeQuery = query(likeRef, where("postId", "==", postId));
+
+    onSnapshot(likeQuery, (response) => {
+      let likes = response.docs.map((doc) => doc.data());
+      let likesCount = likes?.length;
+
+      const isLiked = likes.some((like) => like.userId === userId);
+
+      setLikesCount(likesCount);
+      setLiked(isLiked);
+    });
   } catch (error) {
     console.log(error);
   }
