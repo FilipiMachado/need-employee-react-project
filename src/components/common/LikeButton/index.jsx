@@ -37,74 +37,86 @@ export default function LikeButton({ userId, postId }) {
     getComments(postId, setComments);
   }, [userId, postId]);
 
-  setTimeout(() => {
-    console.log(userId)
-  }, 5000);
+  console.log(comments)
 
-  return (
-    <div className="like-container">
-      <p className="how-many-liked">{likesCount} liked this post</p>
-      <div className="hr-line">
-        <hr />
-      </div>
-      <div className="like-comment">
-        <div className="likes-wrapper" onClick={handleLike}>
-          {liked ? (
-            <AiFillLike className="liked-icon" size={25} />
-          ) : (
-            <AiOutlineLike className="no-liked-icon" size={25} />
-          )}
-
-          <p className={liked ? "purple-icon" : "black-icon"}>Like</p>
+  if (comments.length == 0) {
+    return (
+      <div>is loading...</div>
+    )
+  }
+  else {
+    return (
+      <div className="like-container">
+        <p className="how-many-liked">{likesCount} liked this post</p>
+        <div className="hr-line">
+          <hr />
         </div>
-
-        <div onClick={() => setShowCommentBox(true)} className="likes-wrapper">
-          {
-            <AiOutlineComment
-              className={showCommentBox ? "purple-icon" : "black-icon"}
-              size={25}
+        <div className="like-comment">
+          <div className="likes-wrapper" onClick={handleLike}>
+            {liked ? (
+              <AiFillLike className="liked-icon" size={25} />
+            ) : (
+              <AiOutlineLike className="no-liked-icon" size={25} />
+            )}
+  
+            <p className={liked ? "purple-icon" : "black-icon"}>Like</p>
+          </div>
+  
+          <div onClick={() => setShowCommentBox(true)} className="likes-wrapper">
+            {
+              <AiOutlineComment
+                className={showCommentBox ? "purple-icon" : "black-icon"}
+                size={25}
+              />
+            }
+            <p className={showCommentBox ? "purple-icon" : "black-icon"}>
+              Comment
+            </p>
+          </div>
+        </div>
+  
+        {showCommentBox ? (
+          <>
+            <input
+              onChange={getComment}
+              placeholder="Add a Comment"
+              className="comment-input"
+              name="comment"
+              value={comment}
             />
-          }
-          <p className={showCommentBox ? "purple-icon" : "black-icon"}>
-            Comment
-          </p>
-        </div>
-      </div>
-
-      {showCommentBox ? (
-        <>
-          <input
-            onChange={getComment}
-            placeholder="Add a Comment"
-            className="comment-input"
-            name="comment"
-            value={comment}
-          />
-          <button onClick={addComment} className="add-comment-btn">
-            Add Comment
-          </button>
-
-          {comments.length > 0 ? (
+            <button onClick={addComment} className="add-comment-btn">
+              Add Comment
+            </button>
+  
+            {comments.length > 0 ? (
             comments.map((comment) => {
               return (
-                <div key={comment.key}>
-                  <p>{comment.comment}</p>
-                  <p>{comment.timeStamp}</p>
+                <div key={comment.id} className="all-comments">
+                  <p className="name">{comment.name}</p>
+                  <p className="comment">{comment.comment}</p>
+
+                  <p className="timestamp">{comment.timeStamp}</p>
+                  {/* 
+                  <p>•</p>
+                   */}
                 </div>
               );
             })
           ) : (
             <></>
           )}
-        </>
-      ) : (
-        <></>
-      )}
-    </div>
-  );
+          </>
+        ) : (
+          <>1</>
+        )}
+      </div>
+    );
+  }
+
+  
 }
 
 LikeButton.propTypes = {
-  userId: PropTypes.string.isRequired,
+  userId: PropTypes.string,
   postId: PropTypes.string.isRequired,
 };
