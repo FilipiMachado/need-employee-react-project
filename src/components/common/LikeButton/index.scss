@@ -7,11 +7,11 @@ $mainHoverPurple: #7243d1;
   flex-direction: column;
   gap: 5px;
   padding: 7px 10px;
-  cursor: pointer;
 
   .like-comment {
     display: grid;
     grid-template-columns: auto auto auto auto;
+    cursor: pointer;
   }
 
   .comment-input {
@@ -68,7 +68,7 @@ $mainHoverPurple: #7243d1;
 }
 
 .how-many-liked {
-  margin-bottom: -10px;
+  margin-bottom: -5px;
 }
 
 .hr-line hr {
