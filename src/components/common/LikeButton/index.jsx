@@ -20,13 +20,18 @@ export default function LikeButton({ userId, postId }) {
 
   return (
     <div onClick={handleLike} className="like-container">
-      {liked ? (
-        <AiFillLike className="liked-icon" size={25} />
-      ) : (
-        <AiOutlineLike className="no-liked-icon" size={25} />
-      )}
-      <p>{liked ? "Liked" : "Like"}</p>
-      {likesCount}
+      <p className="how-many-liked">{likesCount} liked this post</p>
+      <div className="hr-line">
+        <hr />
+      </div>
+      <div className="likes-wrapper">
+        {liked ? (
+          <AiFillLike className="liked-icon" size={25} />
+        ) : (
+          <AiOutlineLike className="no-liked-icon" size={25} />
+        )}
+        <p className={liked ? 'purple-icon' : 'black-icon'}>Like</p>
+      </div>
     </div>
   );
 }

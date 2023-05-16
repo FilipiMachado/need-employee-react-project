@@ -3,15 +3,39 @@ $mainHoverPurple: #7243d1;
 
 .like-container {
   display: flex;
-  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   gap: 5px;
   padding: 7px 10px;
   cursor: pointer;
 
   p {
-    font-weight: 600;
-    color: #000000cc;
-    font-size: 14px;
+    font-weight: 400;
+    color: #9c9c9c;
+    font-size: 12px;
+    margin-left: 5px;
+  }
+
+  .likes-wrapper {
+    display: flex;
+    align-items: center;
+    margin-top: -20px;
+
+    .purple-icon {
+      color: $mainHoverPurple;
+    }
+
+    .black-icon {
+      color: #212121;
+    }
+
+    p {
+      position: relative;
+      top: 1.5px;
+      font-weight: 500;
+      color: #212121;
+      font-size: 14px;
+    }
   }
 }
 
@@ -21,4 +45,12 @@ $mainHoverPurple: #7243d1;
 
 .no-liked-icon {
   color: $mainHoverPurple;
+}
+
+.how-many-liked {
+  margin-bottom: -10px;
+}
+
+.hr-line hr {
+  border-top: 1px solid #c4c4c4;
 }
