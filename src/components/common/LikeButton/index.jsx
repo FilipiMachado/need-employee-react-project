@@ -2,13 +2,30 @@ import PropTypes from "prop-types";
 import { useMemo, useState } from "react";
 
 import { AiOutlineLike, AiFillLike, AiOutlineComment } from "react-icons/ai";
-import { likePost, getLikesByUser } from "../../../api/FirestoreAPI";
+import {
+  likePost,
+  getLikesByUser,
+  postComment,
+  getComments,
+} from "../../../api/FirestoreAPI";
+import { getCurrentTimeStamp } from "../../../helpers/useMoment";
 
 import "./index.scss";
 
 export default function LikeButton({ userId, postId }) {
   const [likesCount, setLikesCount] = useState(0);
   const [liked, setLiked] = useState(false);
+  const [showCommentBox, setShowCommentBox] = useState(false);
+  const [comment, setComment] = useState("");
+
+  const getComment = (e) => {
+    setComment(e.target.value);
+  };
+
+  const addComment = () => {
+    postComment(postId, comment, getCurrentTimeStamp("LLL"));
+    setComment("");
+  };
 
   const handleLike = () => {
     likePost(userId, postId, liked);
@@ -16,6 +33,7 @@ export default function LikeButton({ userId, postId }) {
 
   useMemo(() => {
     getLikesByUser(userId, postId, setLiked, setLikesCount);
+    getComments(postId);
   }, [userId, postId]);
 
   return (
@@ -35,14 +53,35 @@ export default function LikeButton({ userId, postId }) {
           <p className={liked ? "purple-icon" : "black-icon"}>Like</p>
         </div>
 
-        <div className="likes-wrapper">
-          <AiOutlineComment className="liked-icon" size={25} />
-
-          <p className={liked ? "purple-icon" : "black-icon"}>Comment</p>
+        <div onClick={() => setShowCommentBox(true)} className="likes-wrapper">
+          {
+            <AiOutlineComment
+              className={showCommentBox ? "purple-icon" : "black-icon"}
+              size={25}
+            />
+          }
+          <p className={showCommentBox ? "purple-icon" : "black-icon"}>
+            Comment
+          </p>
         </div>
       </div>
 
-      <input className="comment-input" type="text" placeholder="Add a Comment"/>
+      {showCommentBox ? (
+        <>
+          <input
+            onChange={getComment}
+            placeholder="Add a Comment"
+            className="comment-input"
+            name="comment"
+            value={comment}
+          />
+          <button onClick={addComment} className="add-comment-btn">
+            Add Comment
+          </button>
+        </>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }

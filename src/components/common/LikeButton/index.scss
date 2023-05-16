@@ -22,6 +22,7 @@ $mainHoverPurple: #7243d1;
     outline: none;
     color: #212121;
     padding-left: 10px;
+    font-size: 16px;
   }
 
   .comment-input:focus {
@@ -72,4 +73,20 @@ $mainHoverPurple: #7243d1;
 
 .hr-line hr {
   border-top: 1px solid #c4c4c4;
+}
+
+.add-comment-btn {
+  width: 150px;
+  height: 35px;
+  background-color: $mainPurple;
+  outline: none;
+  border: none;
+  border-radius: 30px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.add-comment-btn:hover {
+  background-color: $mainHoverPurple;
+  transition: ease all 0.3s;
 }
