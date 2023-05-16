@@ -13,13 +13,14 @@ const NewPostModal = ({
   return (
     <>
       <Modal
-        title="Create a post"
+        title="Create a New Post"
         centered
         open={modalOpen}
         onOk={() => setModalOpen(false)}
         onCancel={() => setModalOpen(false)}
         footer={[
           <Button
+            style={{color: '#fff', backgroundColor: '#8c52ff'}}
             onClick={sendStatus}
             key="submit"
             type="primary"

@@ -78,8 +78,8 @@ export const likePost = (userId, postId, liked) => {
     } else {
       setDoc(docToLike, { userId, postId });
     }
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    console.log(err);
   }
 };
 
@@ -96,17 +96,18 @@ export const getLikesByUser = (userId, postId, setLiked, setLikesCount) => {
       setLikesCount(likesCount);
       setLiked(isLiked);
     });
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    console.log(err);
   }
 };
 
-export const postComment = (postId, comment, timeStamp) => {
+export const postComment = (postId, comment, timeStamp, name) => {
   try {
     addDoc(commentsRef, {
       postId,
       comment,
       timeStamp,
+      name,
     });
   } catch (err) {
     console.log(err);

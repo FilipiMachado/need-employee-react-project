@@ -12,7 +12,7 @@ import { getCurrentTimeStamp } from "../../../helpers/useMoment";
 
 import "./index.scss";
 
-export default function LikeButton({ userId, postId }) {
+export default function LikeButton({ userId, postId, currentUser }) {
   const [likesCount, setLikesCount] = useState(0);
   const [showCommentBox, setShowCommentBox] = useState(false);
   const [liked, setLiked] = useState(false);
@@ -27,8 +27,10 @@ export default function LikeButton({ userId, postId }) {
     setComment(e.target.value);
   };
 
+  console.log(currentUser?.name)
+
   const addComment = () => {
-    postComment(postId, comment, getCurrentTimeStamp("LLL"));
+    postComment(postId, comment, getCurrentTimeStamp("LLL"), currentUser?.name);
     setComment("");
     setShowCommentBox(false);
   };
@@ -90,13 +92,9 @@ export default function LikeButton({ userId, postId }) {
             comments.map((comment) => {
               return (
                 <div key={comment.id} className="all-comments">
-                  <p className="name">{comment.name}</p>
-                  <p className="comment">{comment.comment}</p>
-
-                  <p className="timestamp">{comment.timeStamp}</p>
-                  {/* 
-                  <p>•</p>
-                   */}
+                  <p className="name-text">{comment.name}</p>
+                  <p className="comment-text">{comment.comment}</p>
+                  <p className="timestamp-text">{comment.timeStamp}</p>
                 </div>
               );
             })
@@ -112,4 +110,5 @@ export default function LikeButton({ userId, postId }) {
 LikeButton.propTypes = {
   userId: PropTypes.string,
   postId: PropTypes.string.isRequired,
+  currentUser: PropTypes.object.isRequired,
 };
