@@ -9,6 +9,25 @@ $mainHoverPurple: #7243d1;
   padding: 7px 10px;
   cursor: pointer;
 
+  .like-comment {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+  }
+
+  .comment-input {
+    height: 35px;
+    background-color: whitesmoke;
+    border-radius: 30px;
+    border: 1px solid #9c9c9c;
+    outline: none;
+    color: #212121;
+    padding-left: 10px;
+  }
+
+  .comment-input:focus {
+    border: 1px solid $mainPurple;
+  }
+
   p {
     font-weight: 400;
     color: #9c9c9c;
