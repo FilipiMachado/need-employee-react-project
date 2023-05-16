@@ -46,14 +46,14 @@ export default function ProfileEdit({ onEdit, currentUser }) {
           value={editInputs.headline}
         />
 
-        <label>Location</label>
+        {/* <label>Location</label>
         <input
           onChange={getInput}
           type="text"
           placeholder="Location"
           name="location"
           value={editInputs.location}
-        />
+        /> */}
 
         <label>Company</label>
         <input

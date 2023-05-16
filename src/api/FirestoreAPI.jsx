@@ -66,6 +66,10 @@ export const editProfile = (userId, payload) => {
     });
 };
 
+export const likePost = () => {
+  
+}
+
 export const getSingleStatus = (setAllStatus, id) => {
   const singlePostQuery = query(postsRef, where("userId", "==", id));
   onSnapshot(singlePostQuery, (response) => {
