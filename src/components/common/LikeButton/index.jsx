@@ -14,9 +14,14 @@ import "./index.scss";
 
 export default function LikeButton({ userId, postId }) {
   const [likesCount, setLikesCount] = useState(0);
-  const [liked, setLiked] = useState(false);
   const [showCommentBox, setShowCommentBox] = useState(false);
+  const [liked, setLiked] = useState(false);
   const [comment, setComment] = useState("");
+  const [comments, setComments] = useState([]);
+
+  const handleLike = () => {
+    likePost(userId, postId, liked);
+  };
 
   const getComment = (e) => {
     setComment(e.target.value);
@@ -27,14 +32,14 @@ export default function LikeButton({ userId, postId }) {
     setComment("");
   };
 
-  const handleLike = () => {
-    likePost(userId, postId, liked);
-  };
-
   useMemo(() => {
     getLikesByUser(userId, postId, setLiked, setLikesCount);
-    getComments(postId);
+    getComments(postId, setComments);
   }, [userId, postId]);
+
+  setTimeout(() => {
+    console.log(userId)
+  }, 5000);
 
   return (
     <div className="like-container">
@@ -78,6 +83,19 @@ export default function LikeButton({ userId, postId }) {
           <button onClick={addComment} className="add-comment-btn">
             Add Comment
           </button>
+
+          {comments.length > 0 ? (
+            comments.map((comment) => {
+              return (
+                <div key={comment.key}>
+                  <p>{comment.comment}</p>
+                  <p>{comment.timeStamp}</p>
+                </div>
+              );
+            })
+          ) : (
+            <></>
+          )}
         </>
       ) : (
         <></>

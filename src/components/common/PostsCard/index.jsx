@@ -11,6 +11,9 @@ export default function PostsCard({ posts }) {
   const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState();
 
+  /* console.log("User: ", currentUser)
+  console.log("Posts: ", posts) */
+
   useMemo(() => {
     getCurrentUser(setCurrentUser);
   }, []);
@@ -31,7 +34,11 @@ export default function PostsCard({ posts }) {
       <p className="timestamp-text">{posts.timeStamp}</p>
       <p className="status-text">{posts.status}</p>
 
-      <LikeButton userId={currentUser?.userId} postId={posts.id}/>
+      <LikeButton
+        userId={currentUser?.id}
+        postId={posts.id}
+        currentUser={currentUser}
+      />
     </div>
   );
 }
