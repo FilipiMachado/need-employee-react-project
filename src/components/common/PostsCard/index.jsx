@@ -15,8 +15,6 @@ export default function PostsCard({ posts }) {
     getCurrentUser(setCurrentUser);
   }, []);
 
-  console.log(posts.id);
-
   return (
     <div className="posts-card">
       <p

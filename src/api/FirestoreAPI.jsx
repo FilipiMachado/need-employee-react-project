@@ -8,11 +8,13 @@ import {
   updateDoc,
   query,
   where,
+  setDoc,
 } from "firebase/firestore";
 import { toast } from "react-toastify";
 
 let postsRef = collection(firestore, "posts");
 let userRef = collection(firestore, "users");
+let likeRef = collection(firestore, "likes");
 
 export const postStatusData = (object) => {
   addDoc(postsRef, object)
@@ -66,9 +68,15 @@ export const editProfile = (userId, payload) => {
     });
 };
 
-export const likePost = () => {
-  
-}
+export const likePost = (userId, postId) => {
+  try {
+    const docToLike = doc(likeRef, `${userId}_${postId}`);
+
+    setDoc(docToLike, { userId, postId });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const getSingleStatus = (setAllStatus, id) => {
   const singlePostQuery = query(postsRef, where("userId", "==", id));
