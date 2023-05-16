@@ -20,7 +20,7 @@ const NewPostModal = ({
         onCancel={() => setModalOpen(false)}
         footer={[
           <Button
-            style={{color: '#fff', backgroundColor: '#8c52ff'}}
+            className='post-btn'
             onClick={sendStatus}
             key="submit"
             type="primary"

@@ -68,7 +68,7 @@ export default function LikeButton({ userId, postId, currentUser }) {
             />
           }
           <p className={showCommentBox ? "purple-icon" : "black-icon"}>
-            Comment
+            Comments
           </p>
         </div>
       </div>
