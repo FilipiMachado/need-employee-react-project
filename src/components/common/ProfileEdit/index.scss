@@ -2,13 +2,14 @@ $mainPurple: #8c52ff;
 $mainHoverPurple: #7243d1;
 
 .profile-card {
-  width: auto;
+  width: 60vw;
   min-height: 20vh;
   background-color: whitesmoke;
   margin: 30px;
   border-radius: 5px;
   padding: 20px;
   position: relative;
+  margin: 30px auto;
 
   .username-text {
     color: #000000e6;

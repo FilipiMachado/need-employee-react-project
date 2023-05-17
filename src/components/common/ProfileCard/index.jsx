@@ -12,14 +12,16 @@ export default function ProfileCard({ onEdit, currentUser }) {
   let location = useLocation();
   const [allStatuses, setAllStatus] = useState([]);
   const [currentProfile, setCurrentProfile] = useState({});
-  //const [currentImage, setCurrentImage] = useState({});
-  /* const [progress, setProgress] = useState(0);
-  const [modalOpen, setModalOpen] = useState(false);
-  const getImage = (event) => {
-    setCurrentImage(event.target.files[0]);
+  const [currentImage, setCurrentImage] = useState({});
+  //const [progress, setProgress] = useState(0);
+  //const [modalOpen, setModalOpen] = useState(false);
+
+  const getImage = (e) => {
+    setCurrentImage(e.target.files[0]);
+    console.log(e.target.files[0])
   };
-  console.log(currentProfile);
-  const uploadImage = () => {
+
+  /* const uploadImage = () => {
     uploadImageAPI(
       currentImage,
       currentUser.id,
@@ -50,6 +52,8 @@ export default function ProfileCard({ onEdit, currentUser }) {
         progress={progress}
       /> */}
       <div className="profile-card">
+        <input type={"file"} onChange={getImage} />
+
         {currentUser.id === location?.state?.id ? (
           <div className="edit-btn-wrapper">
             <HiOutlinePencil className="edit-btn-icon" onClick={onEdit} />
