@@ -13,12 +13,13 @@ $mainHoverPurple: #7243d1;
     display: flex;
     justify-content: space-between;
     .profile-image {
-      width: 200px;
-      height: 200px;
+      width: 150px;
+      height: 150px;
       object-fit: contain;
       border-radius: 50%;
       border: 2px solid #cacaca;
       padding: 5px;
+      //margin-top: 10px;
       cursor: pointer;
     }
     .right-info {
