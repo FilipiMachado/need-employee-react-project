@@ -154,17 +154,3 @@ export const getSingleUser = (setCurrentUser, email) => {
     )[0];
   });
 };
-
-/* export const getCurrentUser = (setCurrentUser) => {
-  onSnapshot(userRef, (response) => {
-    setCurrentUser(
-      response.docs
-        .map((docs) => {
-          return { ...docs.data(), userId: docs.id };
-        })
-        .filter((item) => {
-          return item.email === localStorage.getItem("userEmail");
-        })[0]
-    );
-  });
-}; */

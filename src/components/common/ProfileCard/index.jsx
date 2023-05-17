@@ -1,11 +1,13 @@
 import PropTypes from "prop-types";
 import { useState, useMemo } from "react";
-import { getSingleStatus, getSingleUser } from "../../../api/FirestoreAPI";
-import PostsCard from "../PostsCard";
-import { HiOutlinePencil } from "react-icons/hi";
 import { useLocation } from "react-router-dom";
+import { HiOutlinePencil } from "react-icons/hi";
+
+import PostsCard from "../PostsCard";
+
+import { getSingleStatus, getSingleUser } from "../../../api/FirestoreAPI";
+import { uploadImage as uploadImageAPI } from "../../../api/ImageUpload";
 //import FileUploadModal from "../FileUploadModal";
-//import { uploadImage as uploadImageAPI } from "../../../api/ImageUpload";
 import "./index.scss";
 
 export default function ProfileCard({ onEdit, currentUser }) {
@@ -18,18 +20,11 @@ export default function ProfileCard({ onEdit, currentUser }) {
 
   const getImage = (e) => {
     setCurrentImage(e.target.files[0]);
-    console.log(e.target.files[0])
   };
 
-  /* const uploadImage = () => {
-    uploadImageAPI(
-      currentImage,
-      currentUser.id,
-      setModalOpen,
-      setProgress,
-      setCurrentImage
-    );
-  }; */
+  const uploadImage = () => {
+    uploadImageAPI(currentImage, currentUser?.userId);
+  };
 
   useMemo(() => {
     if (location?.state?.id) {
@@ -39,7 +34,9 @@ export default function ProfileCard({ onEdit, currentUser }) {
     if (location?.state?.email) {
       getSingleUser(setCurrentProfile, location?.state?.email);
     }
-  }, []);
+  }, [location?.state?.id, location?.state?.email]);
+
+  console.log(currentUser);
 
   return (
     <>
@@ -53,6 +50,7 @@ export default function ProfileCard({ onEdit, currentUser }) {
       /> */}
       <div className="profile-card">
         <input type={"file"} onChange={getImage} />
+        <button onClick={uploadImage}>Upload</button>
 
         {currentUser.id === location?.state?.id ? (
           <div className="edit-btn-wrapper">
@@ -63,16 +61,15 @@ export default function ProfileCard({ onEdit, currentUser }) {
         )}
         <div className="profile-info">
           <div>
-            {/* <img
+            <img
               className="profile-image"
-              onClick={() => setModalOpen(true)}
               src={
                 Object.values(currentProfile).length === 0
                   ? currentUser.imageLink
                   : currentProfile?.imageLink
               }
               alt="profile-image"
-            /> */}
+            />
             <h3 className="userName">
               {Object.values(currentProfile).length === 0
                 ? currentUser.name
