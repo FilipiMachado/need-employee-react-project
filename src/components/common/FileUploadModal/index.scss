@@ -1,0 +1,30 @@
+$mainPurple: #8c52ff;
+$mainHoverPurple: #7243d1;
+
+.image-upload-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  margin-top: 30px;
+  flex-direction: column;
+
+  .upload-btn {
+    color: $mainPurple;
+    border: 1px solid $mainPurple;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  .upload-btn:hover {
+    color: #fff;
+    border: 1px solid $mainPurple;
+    background-color: $mainPurple;
+    transition: ease all 0.3s;
+  }
+
+  .img-name-text {
+
+  }
+}

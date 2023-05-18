@@ -4,10 +4,10 @@ import { useLocation } from "react-router-dom";
 import { HiOutlinePencil } from "react-icons/hi";
 
 import PostsCard from "../PostsCard";
+import FileUploadModal from "../FileUploadModal";
 
 import { getSingleStatus, getSingleUser } from "../../../api/FirestoreAPI";
 import { uploadImage as uploadImageAPI } from "../../../api/ImageUpload";
-//import FileUploadModal from "../FileUploadModal";
 import "./index.scss";
 
 export default function ProfileCard({ onEdit, currentUser }) {
@@ -15,16 +15,18 @@ export default function ProfileCard({ onEdit, currentUser }) {
   const [allStatuses, setAllStatus] = useState([]);
   const [currentProfile, setCurrentProfile] = useState({});
   const [currentImage, setCurrentImage] = useState({});
-  //const [progress, setProgress] = useState(0);
-  //const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   const getImage = (e) => {
     setCurrentImage(e.target.files[0]);
   };
 
   const uploadImage = () => {
-    uploadImageAPI(currentImage, currentUser?.userId);
+    uploadImageAPI(currentImage, currentUser?.userId, setModalOpen, setProgress);
   };
+
+  console.log(currentImage);
 
   useMemo(() => {
     if (location?.state?.id) {
@@ -36,22 +38,17 @@ export default function ProfileCard({ onEdit, currentUser }) {
     }
   }, [location?.state?.id, location?.state?.email]);
 
-  console.log(currentUser);
-
   return (
     <>
-      {/* <FileUploadModal
+      <FileUploadModal
         getImage={getImage}
         uploadImage={uploadImage}
         modalOpen={modalOpen}
         setModalOpen={setModalOpen}
         currentImage={currentImage}
         progress={progress}
-      /> */}
+      />
       <div className="profile-card">
-        <input type={"file"} onChange={getImage} />
-        <button onClick={uploadImage}>Upload</button>
-
         {currentUser.id === location?.state?.id ? (
           <div className="edit-btn-wrapper">
             <HiOutlinePencil className="edit-btn-icon" onClick={onEdit} />
@@ -63,6 +60,7 @@ export default function ProfileCard({ onEdit, currentUser }) {
           <div>
             <img
               className="profile-image"
+              onClick={() => setModalOpen(true)}
               src={
                 Object.values(currentProfile).length === 0
                   ? currentUser.imageLink
