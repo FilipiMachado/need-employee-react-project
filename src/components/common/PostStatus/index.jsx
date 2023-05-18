@@ -58,7 +58,7 @@ export default function PostStatus({ currentUser }) {
   return (
     <div className="post-status-wrapper">
       <div className="user-details">
-        <img src="" alt="" />
+        <img className="user-profile-image" src={currentUser.imageLink} alt="profile-photo" />
         <p>{currentUser.name}</p>
         <p>{currentUser.headline}</p>
       </div>

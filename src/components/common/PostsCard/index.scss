@@ -58,6 +58,14 @@ $mainHoverPurple: #7243d1;
     height: 70px;
     border-radius: 50%;
     object-fit: cover;
+    border: 2px solid whitesmoke;
+    cursor: pointer;
+  }
+
+  .profile-image:hover {
+    border: 2px solid $mainPurple;
+    transition: ease all 0.2s;
+    opacity: 0.9;
   }
 
   .name-text {
