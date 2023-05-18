@@ -17,10 +17,21 @@ export default function PostsCard({ posts }) {
     getAllUsers(setAllUsers);
   }, []);
 
-  console.log(allUsers)
-
+  // === posts.UserId.map((item) => item.imageLink)[0]
   return (
     <div className="posts-card">
+      <div className="post-image-wrapper">
+      <img
+        alt="profile-image"
+        className="profile-image"
+        src={
+          allUsers
+            .filter((item) => item.id === posts.userId)
+            .map((item) => item.imageLink)[0]
+        }
+      />
+      </div>
+      
       <p
         onClick={() =>
           navigate("/profile", {

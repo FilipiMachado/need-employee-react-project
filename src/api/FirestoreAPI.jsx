@@ -111,10 +111,11 @@ export const getLikesByUser = (userId, postId, setLiked, setLikesCount) => {
   }
 };
 
-export const postComment = (postId, comment, timeStamp, name) => {
+export const postComment = (postId, userId, comment, timeStamp, name) => {
   try {
     addDoc(commentsRef, {
       postId,
+      userId,
       comment,
       timeStamp,
       name,

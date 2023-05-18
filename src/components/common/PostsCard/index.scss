@@ -12,6 +12,20 @@ $mainHoverPurple: #7243d1;
   flex-direction: column;
   padding-bottom: 20px;
 
+  .post-image-wrapper {
+    display: flex;
+    padding: 15px;
+    gap: 10px;
+    position: relative;
+  }
+
+  .profile-image {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
   .name-text {
     font-size: 14px;
     color: $mainPurple;

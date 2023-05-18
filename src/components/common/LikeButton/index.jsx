@@ -28,7 +28,13 @@ export default function LikeButton({ userId, postId, currentUser }) {
   };
 
   const addComment = () => {
-    postComment(postId, comment, getCurrentTimeStamp("LLL"), currentUser?.name);
+    postComment(
+      postId,
+      userId,
+      comment,
+      getCurrentTimeStamp("LLL"),
+      currentUser?.name
+    );
     setComment("");
     setShowCommentBox(false);
   };
@@ -108,5 +114,5 @@ export default function LikeButton({ userId, postId, currentUser }) {
 LikeButton.propTypes = {
   userId: PropTypes.string,
   postId: PropTypes.string.isRequired,
-  currentUser: PropTypes.object.isRequired,
+  currentUser: PropTypes.object,
 };
