@@ -4,7 +4,11 @@ import PropTypes from "prop-types";
 import NewPostModal from "../Modal";
 import PostsCard from "../PostsCard";
 
-import { postStatusData, getPosts } from "../../../api/FirestoreAPI";
+import {
+  postStatusData,
+  getPosts,
+  updatePost,
+} from "../../../api/FirestoreAPI";
 import { getCurrentTimeStamp } from "../../../helpers/useMoment";
 import { getUniqueId } from "../../../helpers/getUniqueId";
 
@@ -15,6 +19,8 @@ export default function PostStatus({ currentUser }) {
   const [newPostModalOpen, setNewPostModalOpen] = useState(false);
   const [status, setStatus] = useState("");
   const [allStatus, setAllStatus] = useState([]);
+  const [currentPost, setCurrentPost] = useState({});
+  const [isEdit, setIsEdit] = useState(false);
 
   const sendStatus = async () => {
     let object = {
@@ -27,7 +33,20 @@ export default function PostStatus({ currentUser }) {
     };
     await postStatusData(object);
     await setNewPostModalOpen(false);
+    setIsEdit(false);
     await setStatus("");
+  };
+
+  const getEditData = (posts) => {
+    setNewPostModalOpen(true);
+    setStatus(posts?.status);
+    setCurrentPost(posts);
+    setIsEdit(true);
+  };
+
+  const updateStatus = () => {
+    console.log(currentPost);
+    updatePost(currentPost.id, status);
   };
 
   useMemo(() => {
@@ -39,7 +58,10 @@ export default function PostStatus({ currentUser }) {
       <div className="post-status">
         <button
           className="show-modal-btn"
-          onClick={() => setNewPostModalOpen(true)}
+          onClick={() => {
+            setIsEdit(false);
+            setNewPostModalOpen(true);
+          }}
         >
           New Post
         </button>
@@ -51,15 +73,21 @@ export default function PostStatus({ currentUser }) {
         modalOpen={newPostModalOpen}
         setModalOpen={setNewPostModalOpen}
         sendStatus={sendStatus}
+        isEdit={isEdit}
+        updateStatus={updateStatus}
       />
 
       <div>
         {allStatus.length > 0 ? (
           allStatus.map((posts, idx) => {
-            return <PostsCard key={idx} posts={posts} />;
+            return (
+              <PostsCard key={idx} posts={posts} getEditData={getEditData} />
+            );
           })
         ) : (
-          <p className="no-posts-found">You have no posts yet. Wanna add a new one?</p>
+          <p className="no-posts-found">
+            You have no posts yet. Wanna add a new one?
+          </p>
         )}
       </div>
     </div>

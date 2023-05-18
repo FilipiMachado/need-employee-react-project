@@ -144,6 +144,18 @@ export const getComments = (postId, setComments) => {
   }
 };
 
+export const updatePost = (id, status) => {
+  console.log(id, status);
+
+  let docToUpdate = doc(postsRef, id);
+
+  try {
+    updateDoc(docToUpdate, { status });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export const getSingleStatus = (setAllStatus, id) => {
   const singlePostQuery = query(postsRef, where("userId", "==", id));
   onSnapshot(singlePostQuery, (response) => {

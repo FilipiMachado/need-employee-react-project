@@ -9,6 +9,8 @@ const NewPostModal = ({
   sendStatus,
   status,
   setStatus,
+  isEdit,
+  updateStatus,
 }) => {
   return (
     <>
@@ -16,17 +18,23 @@ const NewPostModal = ({
         title="Create a New Post"
         centered
         open={modalOpen}
-        onOk={() => setModalOpen(false)}
-        onCancel={() => setModalOpen(false)}
+        onOk={() => {
+          setStatus("");
+          setModalOpen(false);
+        }}
+        onCancel={() => {
+          setStatus("");
+          setModalOpen(false);
+        }}
         footer={[
           <Button
-            className='post-btn'
-            onClick={sendStatus}
+            className="post-btn"
+            onClick={isEdit ? updateStatus : sendStatus}
             key="submit"
             type="primary"
             disabled={status.length > 0 ? false : true}
           >
-            Post
+            {isEdit ? "Update" : "Post"}
           </Button>,
         ]}
       >
@@ -48,6 +56,8 @@ NewPostModal.propTypes = {
   status: PropTypes.string.isRequired,
   sendStatus: PropTypes.func.isRequired,
   setStatus: PropTypes.func.isRequired,
+  isEdit: PropTypes.bool.isRequired,
+  updateStatus: PropTypes.func.isRequired,
 };
 
 export default NewPostModal;

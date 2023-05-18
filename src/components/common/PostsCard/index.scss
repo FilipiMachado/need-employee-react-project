@@ -3,7 +3,6 @@ $mainHoverPurple: #7243d1;
 
 .posts-card {
   width: 40vw;
-  //min-height: 7em;
   background-color: whitesmoke;
   margin-top: 30px;
   border: 1px solid #b7b7b7;
@@ -12,11 +11,41 @@ $mainHoverPurple: #7243d1;
   flex-direction: column;
   padding-bottom: 20px;
 
+  .profile-info-container {
+    display: flex;
+    align-items: center;
+  }
+
   .post-image-wrapper {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    flex-direction: row-reverse;
     padding: 16px;
     gap: 5px;
+  }
+
+  .action-wrapper {
+    display: flex;
+    align-items: center;
+
+    .action-icon {
+      color: #212121;
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    .edit:hover {
+      background-color: #b7b7b7;
+      border-radius: 20px;
+      transition: ease all 0.3s;
+    }
+
+    .remove:hover {
+      background-color: #b7b7b7;
+      border-radius: 20px;
+      transition: ease all 0.3s;
+    }
   }
 
   .profile-info-wrapper {
