@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import { useMemo, useState } from "react";
 
-import { AiOutlineLike, AiFillLike, AiOutlineComment } from "react-icons/ai";
 import {
   likePost,
   getLikesByUser,
@@ -9,6 +8,9 @@ import {
   getComments,
 } from "../../../api/FirestoreAPI";
 import { getCurrentTimeStamp } from "../../../helpers/useMoment";
+
+import { AiOutlineLike, AiFillLike, AiOutlineComment } from "react-icons/ai";
+//import { BiLike } from 'react-icons/bi'
 
 import "./index.scss";
 

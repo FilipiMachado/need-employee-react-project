@@ -14,9 +14,14 @@ $mainHoverPurple: #7243d1;
 
   .post-image-wrapper {
     display: flex;
-    padding: 15px;
-    gap: 10px;
-    position: relative;
+    align-items: center;
+    padding: 16px;
+    gap: 5px;
+  }
+
+  .profile-info-wrapper {
+    display: flex;
+    flex-direction: column;
   }
 
   .profile-image {
@@ -31,7 +36,6 @@ $mainHoverPurple: #7243d1;
     color: $mainPurple;
     font-weight: 600;
     margin: 10px 0 0 10px;
-    text-decoration: underline;
     cursor: pointer;
   }
 
@@ -44,8 +48,8 @@ $mainHoverPurple: #7243d1;
 
   .status-text {
     text-align: left;
-    margin: 10px 0 0 10px;
-    font-size: 14px;
+    margin: 10px 0 0 16px;
+    font-size: 16px;
     font-weight: 400;
     color: #000000e6;
   }

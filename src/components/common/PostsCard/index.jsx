@@ -21,29 +21,31 @@ export default function PostsCard({ posts }) {
   return (
     <div className="posts-card">
       <div className="post-image-wrapper">
-      <img
-        alt="profile-image"
-        className="profile-image"
-        src={
-          allUsers
-            .filter((item) => item.id === posts.userId)
-            .map((item) => item.imageLink)[0]
-        }
-      />
-      </div>
-      
-      <p
-        onClick={() =>
-          navigate("/profile", {
-            state: { id: posts?.userId, email: posts.userEmail },
-          })
-        }
-        className="name-text"
-      >
-        {posts.userName}
-      </p>
+        <img
+          alt="profile-image"
+          className="profile-image"
+          src={
+            allUsers
+              .filter((item) => item.id === posts.userId)
+              .map((item) => item.imageLink)[0]
+          }
+        />
 
-      <p className="timestamp-text">{posts.timeStamp}</p>
+        <div className="profile-info-wrapper">
+          <p
+            onClick={() =>
+              navigate("/profile", {
+                state: { id: posts?.userId, email: posts.userEmail },
+              })
+            }
+            className="name-text"
+          >
+            {posts.userName}
+          </p>
+          <p className="timestamp-text">{posts.timeStamp}</p>
+        </div>
+      </div>
+
       <p className="status-text">{posts.status}</p>
 
       <LikeButton
