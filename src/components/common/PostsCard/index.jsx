@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getCurrentUser } from "../../../api/FirestoreAPI";
+import { getCurrentUser, getAllUsers } from "../../../api/FirestoreAPI";
 
 import LikeButton from "../LikeButton";
 
@@ -10,10 +10,14 @@ import "./index.scss";
 export default function PostsCard({ posts }) {
   const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState();
+  const [allUsers, setAllUsers] = useState([]);
 
   useMemo(() => {
     getCurrentUser(setCurrentUser);
+    getAllUsers(setAllUsers);
   }, []);
+
+  console.log(allUsers)
 
   return (
     <div className="posts-card">
@@ -31,7 +35,11 @@ export default function PostsCard({ posts }) {
       <p className="timestamp-text">{posts.timeStamp}</p>
       <p className="status-text">{posts.status}</p>
 
-      <LikeButton userId={currentUser?.userId} postId={posts.id} currentUser={currentUser}/>
+      <LikeButton
+        userId={currentUser?.userId}
+        postId={posts.id}
+        currentUser={currentUser}
+      />
     </div>
   );
 }

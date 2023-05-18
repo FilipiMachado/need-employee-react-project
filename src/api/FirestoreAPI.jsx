@@ -38,6 +38,16 @@ export const getPosts = (setAllStatus) => {
   });
 };
 
+export const getAllUsers = (setAllUsers) => {
+  onSnapshot(userRef, (res) => {
+    setAllUsers(
+      res.docs.map((docs) => {
+        return { ...docs.data(), id: docs.id };
+      })
+    );
+  });
+};
+
 export const postUserData = (object) => {
   addDoc(userRef, object)
     .then(() => {})
