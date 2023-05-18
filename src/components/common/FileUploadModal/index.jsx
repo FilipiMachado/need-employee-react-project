@@ -19,7 +19,7 @@ export default function FileUploadModal({
         open={modalOpen}
         onOk={() => setModalOpen(false)}
         onCancel={() => setModalOpen(false)}
-        Footer={[
+        footer={[
           <Button
             disabled={currentImage.name ? false : true}
             key="submit"
@@ -36,9 +36,13 @@ export default function FileUploadModal({
           </label>
           <p className="img-name-text">{currentImage.name}</p>
 
-          <div className="progress-bar">
-            <Progress type="line" percent={progress} />
-          </div>
+          {progress === 0 ? (
+            <></>
+          ) : (
+            <div className="progress-bar">
+              <Progress type="line" percent={progress} />
+            </div>
+          )}
 
           <input hidden id="upload-image" type={"file"} onChange={getImage} />
         </div>

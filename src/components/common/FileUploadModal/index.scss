@@ -5,8 +5,8 @@ $mainHoverPurple: #7243d1;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 60px;
-  margin-top: 30px;
+  height: auto;
+  margin-top: 40px;
   flex-direction: column;
 
   .upload-btn {
@@ -22,9 +22,5 @@ $mainHoverPurple: #7243d1;
     border: 1px solid $mainPurple;
     background-color: $mainPurple;
     transition: ease all 0.3s;
-  }
-
-  .img-name-text {
-
   }
 }

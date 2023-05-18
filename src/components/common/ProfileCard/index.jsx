@@ -23,10 +23,14 @@ export default function ProfileCard({ onEdit, currentUser }) {
   };
 
   const uploadImage = () => {
-    uploadImageAPI(currentImage, currentUser?.userId, setModalOpen, setProgress);
+    uploadImageAPI(
+      currentImage,
+      currentUser?.userId,
+      setModalOpen,
+      setProgress,
+      setCurrentImage,
+    );
   };
-
-  console.log(currentImage);
 
   useMemo(() => {
     if (location?.state?.id) {
