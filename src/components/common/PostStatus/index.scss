@@ -10,16 +10,20 @@ $mainHoverPurple: #7243d1;
 
   .user-details {
     width: 40vw;
-    height: auto;
+    min-height: 160px;
+    max-height: 160px;
     background-color: #fff;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
+    margin-top: 20px;
     margin-bottom: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
 
     .user-profile-image {
+      position: relative;
+      top: -40px;
       width: 100px;
       height: 100px;
       object-fit: cover;
@@ -38,6 +42,16 @@ $mainHoverPurple: #7243d1;
       border: 2px solid $mainPurple;
       transition: ease all 0.2s;
       opacity: 0.9;
+    }
+
+    .user-name-text {
+      margin: 15px;
+      font-weight: 600;
+    }
+
+    .user-headline-text {
+      margin-top: -15px;
+      color: #212121;
     }
   }
 

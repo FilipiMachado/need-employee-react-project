@@ -64,6 +64,7 @@ export default function Topbar() {
           size={25}
           className="outline-icon user-icon"
           onClick={displayPopup}
+          title="User Profile"
         />
       </div>
     </div>

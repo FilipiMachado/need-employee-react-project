@@ -64,8 +64,9 @@ export default function PostsCard({ posts, getEditData }) {
               }
               className="name-text"
             >
-              {posts.userName}
+              {allUsers.filter((user) => user.id === posts.userId)[0]?.name}
             </p>
+            <p className="headline-text">{allUsers.filter((user) => user.id === posts.userId)[0]?.headline}</p>
             <p className="timestamp-text">{posts.timeStamp}</p>
           </div>
         </div>
