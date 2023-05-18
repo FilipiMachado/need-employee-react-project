@@ -53,8 +53,16 @@ export default function PostStatus({ currentUser }) {
     getPosts(setAllStatus);
   }, []);
 
+  console.log(currentUser);
+
   return (
     <div className="post-status-wrapper">
+      <div className="user-details">
+        <img src="" alt="" />
+        <p>{currentUser.name}</p>
+        <p>{currentUser.headline}</p>
+      </div>
+
       <div className="post-status">
         <button
           className="show-modal-btn"

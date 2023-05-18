@@ -26,7 +26,7 @@ export default function PostsCard({ posts, getEditData }) {
   return (
     <div className="posts-card">
       <div className="post-image-wrapper">
-        {currentUser.userId === posts?.userId ? (
+        {currentUser?.userId === posts?.userId ? (
           <div className="action-wrapper">
             <BsPencil
               onClick={() => getEditData(posts)}
