@@ -50,11 +50,11 @@ export default function Topbar() {
           }}
         />
         <AiOutlineUserSwitch
-          title="Profile"
+          title="Connect"
           size={25}
           className="outline-icon"
           onClick={() => {
-            redirectTo("/profile");
+            redirectTo("/connect");
           }}
         />
         <BsFillBriefcaseFill size={25} className="outline-icon" />

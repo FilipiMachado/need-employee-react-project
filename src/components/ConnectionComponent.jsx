@@ -1,15 +1,14 @@
-import PropTypes from "prop-types";
+//import PropTypes from "prop-types";
 
-import PostStatus from "./common/PostStatus";
+import "../Sass/ConnectionComponent.scss";
 
-export default function ConnectionComponent({ currentUser }) {
+export default function ConnectionComponent() {
   return (
-    <div className="home-component">
-      <PostStatus currentUser={currentUser}/>
+    <div className="connection-component">
+      connection
     </div>
   );
 }
 
 ConnectionComponent.propTypes = {
-  currentUser: PropTypes.object.isRequired,
 };
