@@ -45,8 +45,8 @@ export default function PostStatus({ currentUser }) {
   };
 
   const updateStatus = () => {
-    console.log(currentPost);
     updatePost(currentPost.id, status);
+    setNewPostModalOpen(false);
   };
 
   useMemo(() => {

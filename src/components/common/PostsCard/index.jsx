@@ -1,7 +1,11 @@
 import PropTypes from "prop-types";
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getCurrentUser, getAllUsers } from "../../../api/FirestoreAPI";
+import {
+  getCurrentUser,
+  getAllUsers,
+  deletePost,
+} from "../../../api/FirestoreAPI";
 
 import LikeButton from "../LikeButton";
 
@@ -19,23 +23,27 @@ export default function PostsCard({ posts, getEditData }) {
     getAllUsers(setAllUsers);
   }, []);
 
-  // === posts.UserId.map((item) => item.imageLink)[0]
   return (
     <div className="posts-card">
       <div className="post-image-wrapper">
-        <div className="action-wrapper">
-          <BsPencil
-            onClick={() => getEditData(posts)}
-            size={20}
-            className="action-icon edit"
-            title="Edit Post"
-          />
-          <BsTrash
-            size={20}
-            className="action-icon remove"
-            title="Remove Post"
-          />
-        </div>
+        {currentUser.userId === posts?.userId ? (
+          <div className="action-wrapper">
+            <BsPencil
+              onClick={() => getEditData(posts)}
+              size={20}
+              className="action-icon edit"
+              title="Edit Post"
+            />
+            <BsTrash
+              onClick={() => deletePost(posts)}
+              size={20}
+              className="action-icon remove"
+              title="Remove Post"
+            />
+          </div>
+        ) : (
+          <></>
+        )}
 
         <div className="profile-info-container">
           <img

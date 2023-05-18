@@ -145,12 +145,20 @@ export const getComments = (postId, setComments) => {
 };
 
 export const updatePost = (id, status) => {
-  console.log(id, status);
-
   let docToUpdate = doc(postsRef, id);
 
   try {
     updateDoc(docToUpdate, { status });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const deletePost = (id) => {
+  let docToDelete = doc(postsRef, id);
+
+  try {
+    deleteDoc(docToDelete);
   } catch (err) {
     console.log(err);
   }
