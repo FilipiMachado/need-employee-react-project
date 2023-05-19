@@ -1,11 +1,10 @@
 import PropTypes from "prop-types";
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   getCurrentUser,
   getAllUsers,
   deletePost,
-  getConnections,
 } from "../../../api/FirestoreAPI";
 
 import LikeButton from "../LikeButton";
@@ -18,20 +17,11 @@ export default function PostsCard({ posts, getEditData }) {
   const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState();
   const [allUsers, setAllUsers] = useState([]);
-  const [isConnected, setIsConnected] = useState(false);
 
   useMemo(() => {
     getCurrentUser(setCurrentUser);
     getAllUsers(setAllUsers);
   }, []);
-
-  useEffect(() => {
-    getConnections(currentUser?.userId, posts.userId, setIsConnected);
-  }, [currentUser?.userId, posts.userId]);
-
-  //console.log(currentUser?.userId)
-  //console.log(posts.userId)
-  console.log(isConnected);
 
   return (
     <div className="posts-card">

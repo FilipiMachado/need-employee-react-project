@@ -1,7 +1,20 @@
 import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
 
-export default function ConnectedUsers({ user, getCurrentUser }) {
-  return (
+import { getConnections } from "../../../api/FirestoreAPI";
+
+export default function ConnectedUsers({ user, currentUser, getCurrentUser }) {
+  const [isConnected, setIsConnected] = useState(false);
+
+  useEffect(() => {
+    getConnections(currentUser?.userId, user.userId, setIsConnected);
+  }, [currentUser?.userId, user.userId]);
+
+  console.log(isConnected);
+
+  return isConnected ? (
+    <></>
+  ) : (
     <div
       onClick={() => getCurrentUser(user.userId)}
       className="grid-child-wrapper"
@@ -14,5 +27,6 @@ export default function ConnectedUsers({ user, getCurrentUser }) {
 
 ConnectedUsers.propTypes = {
   user: PropTypes.object.isRequired,
+  currentUser: PropTypes.object.isRequired,
   getCurrentUser: PropTypes.func.isRequired,
 };

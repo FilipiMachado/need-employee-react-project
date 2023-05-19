@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getAllUsers, addConnection } from "../api/FirestoreAPI";
 
 import ConnectedUsers from "./common/ConnectedUsers";
@@ -22,12 +22,13 @@ export default function ConnectionComponent({ currentUser }) {
     <div className="connection-component">
       {users.map((user) => {
         return user.userId === currentUser.userId ? (
-          <></>
+          <React.Fragment key={user.id}></React.Fragment>
         ) : (
           <ConnectedUsers
             key={user.id}
             user={user}
             getCurrentUser={getCurrentUser}
+            currentUser={currentUser}
           />
         );
       })}
