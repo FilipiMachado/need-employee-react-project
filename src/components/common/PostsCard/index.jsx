@@ -42,7 +42,9 @@ export default function PostsCard({ posts, getEditData }) {
             />
           </div>
         ) : (
-          <></>
+          <>
+            <div></div>
+          </>
         )}
 
         <div className="profile-info-container">
@@ -51,7 +53,7 @@ export default function PostsCard({ posts, getEditData }) {
             className="profile-image"
             src={
               allUsers
-                .filter((item) => item.id === posts.userId)
+                .filter((item) => item.userId === posts.userId)
                 .map((item) => item.imageLink)[0]
             }
           />
@@ -66,7 +68,9 @@ export default function PostsCard({ posts, getEditData }) {
             >
               {allUsers.filter((user) => user.id === posts.userId)[0]?.name}
             </p>
-            <p className="headline-text">{allUsers.filter((user) => user.id === posts.userId)[0]?.headline}</p>
+            <p className="headline-text">
+              {allUsers.filter((user) => user.id === posts.userId)[0]?.headline}
+            </p>
             <p className="timestamp-text">{posts.timeStamp}</p>
           </div>
         </div>
