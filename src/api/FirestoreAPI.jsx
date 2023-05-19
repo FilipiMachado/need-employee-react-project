@@ -17,6 +17,7 @@ let postsRef = collection(firestore, "posts");
 let userRef = collection(firestore, "users");
 let likeRef = collection(firestore, "likes");
 let commentsRef = collection(firestore, "comments");
+let connectionRef = collection(firestore, "connections");
 
 export const postStatusData = (object) => {
   addDoc(postsRef, object)
@@ -177,6 +178,18 @@ export const getSingleStatus = (setAllStatus, id) => {
   });
 };
 
+export const addConnection = (userId, targetId) => {
+  try {
+    const connectionToAdd = doc(connectionRef, `${userId}_${targetId}`);
+
+    setDoc(connectionToAdd, { userId, targetId });
+
+    toast.success("New Connection Added!");
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export const getSingleUser = (setCurrentUser, email) => {
   const singleUserQuery = query(userRef, where("email", "==", email));
   onSnapshot(singleUserQuery, (response) => {
@@ -186,4 +199,25 @@ export const getSingleUser = (setCurrentUser, email) => {
       })
     )[0];
   });
+};
+
+export const getConnections = (userId, targetId, setIsConnected) => {
+  try {
+    let connectionQuery = query(
+      connectionRef,
+      where("targetId", "==", targetId)
+    );
+
+    onSnapshot(connectionQuery, (response) => {
+      let connections = response.docs.map((doc) => doc.data());
+
+      const isConnected = connections.some(
+        (connection) => connection.userId === userId
+      );
+
+      setIsConnected(isConnected);
+    });
+  } catch (err) {
+    console.log(err);
+  }
 };

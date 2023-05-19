@@ -53,13 +53,15 @@ export default function PostStatus({ currentUser }) {
     getPosts(setAllStatus);
   }, []);
 
-  console.log(currentUser);
-
   return (
     <div className="post-status-wrapper">
       <div className="user-details">
-        <div style={{maxHeight: '80px'}}>
-          <img className="user-profile-image" src={currentUser.imageLink} alt="profile-photo" />
+        <div style={{ maxHeight: "80px" }}>
+          <img
+            className="user-profile-image"
+            src={currentUser.imageLink}
+            alt="profile-photo"
+          />
         </div>
         <p className="user-name-text">{currentUser.name}</p>
         <p className="user-headline-text">{currentUser.headline}</p>

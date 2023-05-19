@@ -1,4 +1,17 @@
 .connection-component {
-    display: grid;
-    grid-template-columns: auto auto;
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  text-align: center;
+
+  .grid-child-wrapper {
+    border: 1px solid #212121;
+    width: 300px;
+    height: 100px;
+    margin: 20px;
+    padding: 10px;
+    cursor: pointer;
+  }
 }

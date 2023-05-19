@@ -1,14 +1,18 @@
-//import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
 import { useEffect, useState } from "react";
-import { getAllUsers } from "../api/FirestoreAPI";
+import { getAllUsers, addConnection } from "../api/FirestoreAPI";
 
 import ConnectedUsers from "./common/ConnectedUsers";
 
 import "../Sass/ConnectionComponent.scss";
 
-export default function ConnectionComponent() {
+export default function ConnectionComponent({ currentUser }) {
   const [users, setUsers] = useState([]);
+
+  const getCurrentUser = (id) => {
+    addConnection(currentUser?.userId, id);
+  };
 
   useEffect(() => {
     getAllUsers(setUsers);
@@ -17,10 +21,20 @@ export default function ConnectionComponent() {
   return (
     <div className="connection-component">
       {users.map((user) => {
-        return <ConnectedUsers user={user} key={user.id} />;
+        return user.userId === currentUser.userId ? (
+          <></>
+        ) : (
+          <ConnectedUsers
+            key={user.id}
+            user={user}
+            getCurrentUser={getCurrentUser}
+          />
+        );
       })}
     </div>
   );
 }
 
-ConnectionComponent.propTypes = {};
+ConnectionComponent.propTypes = {
+  currentUser: PropTypes.object.isRequired,
+};
