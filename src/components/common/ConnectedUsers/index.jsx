@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 
 import { getConnections } from "../../../api/FirestoreAPI";
 
+import { AiOutlineUsergroupAdd } from "react-icons/ai";
+
 export default function ConnectedUsers({ user, currentUser, getCurrentUser }) {
   const [isConnected, setIsConnected] = useState(false);
 
@@ -10,17 +12,18 @@ export default function ConnectedUsers({ user, currentUser, getCurrentUser }) {
     getConnections(currentUser?.userId, user.userId, setIsConnected);
   }, [currentUser?.userId, user.userId]);
 
-  console.log(isConnected);
-
   return isConnected ? (
     <></>
   ) : (
-    <div
-      onClick={() => getCurrentUser(user.userId)}
-      className="grid-child-wrapper"
-    >
-      <p>{user.name}</p>
-      <p>{user.headline}</p>
+    <div className="grid-child-wrapper">
+      <img src={user.imageLink} alt="" />
+      <p className="username-text">{user.name}</p>
+      <p className="headline-text">{user.headline}</p>
+
+      <button onClick={() => getCurrentUser(user.userId)}>
+        <AiOutlineUsergroupAdd size={20} className="add-icon"/>
+        Connect
+      </button>
     </div>
   );
 }

@@ -1,17 +1,74 @@
+$mainPurple: #8c52ff;
+$mainHoverPurple: #7243d1;
+
 .connection-component {
+  width: 80vw;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: auto auto auto;
+  gap: 10px;
   justify-content: center;
   align-items: center;
   margin-top: 20px;
   text-align: center;
+  border: 1px solid #bbb;
+  background-color: whitesmoke;
+  border-radius: 10px;
 
   .grid-child-wrapper {
-    border: 1px solid #212121;
-    width: 300px;
-    height: 100px;
+    border: 1px solid #bbb;
+    width: 220px;
+    height: 240px;
     margin: 20px;
     padding: 10px;
-    cursor: pointer;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+    position: relative;
+
+    img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      margin-top: 20px;
+      object-fit: cover;
+    }
+
+    .username-text {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .headline-text {
+      font-size: 14px;
+      font-weight: 500;
+      margin-top: -15px;
+    }
+
+    button {
+      width: 75%;
+      height: 40px;
+      position: absolute;
+      background-color: $mainPurple;
+      outline: none;
+      border: none;
+      border-radius: 20px;
+      bottom: 10px;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+      .add-icon {
+        margin-right: 5px;
+      }
+    }
+
+    button:hover {
+      background-color: $mainHoverPurple;
+      transition: ease all 0.3s;
+    }
   }
 }
