@@ -59,9 +59,26 @@ $mainHoverPurple: #7243d1;
   height: 380px;
   background-color: #fff;
   border-radius: 0px 0px 10px 10px;
+  cursor: pointer;
   z-index: 99;
 
   .search-wrapper {
-    
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    gap: 10px;
+    padding: 5px;
+
+    img {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
+
+  .search-wrapper:hover {
+    background-color: #bbb;
+    transition: ease all 0.3s;
   }
 }

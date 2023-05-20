@@ -23,6 +23,7 @@ export default function Topbar() {
   const [isSearching, setIsSearching] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [users, setUsers] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
   const navigate = useNavigate();
 
   const redirectTo = (route) => {
@@ -32,6 +33,29 @@ export default function Topbar() {
   const displayPopup = () => {
     setPopupVisible(!popupVisible);
   };
+
+  const handleSearch = () => {
+    if (searchInput !== "") {
+      let searched = users.filter((user) => {
+        return Object.values(user)
+          .join("")
+          .toLowerCase()
+          .includes(searchInput.toLowerCase);
+      });
+
+      setFilteredUsers(searched);
+    } else {
+      console.log("user");
+    }
+  };
+
+  useEffect(() => {
+    let debounced = setTimeout(() => {
+      handleSearch();
+    }, 1000);
+
+    return () => clearTimeout(debounced);
+  }, [searchInput]);
 
   useEffect(() => {
     getAllUsers(setUsers);
@@ -57,14 +81,14 @@ export default function Topbar() {
         alt="Main Logo"
       />
 
-      {!searchInput.length === 0 ? (
+      {searchInput.length === 0 ? (
         <></>
       ) : (
         <div className="search-results">
-          {users.map((user) => (
+          {filteredUsers.map((user) => (
             <div className="search-wrapper" key={user.userId}>
               <img src={user.imageLink} alt="Profile Photo" />
-              <p className="">{user.name}</p>
+              <p className="username-text">{user.name}</p>
             </div>
           ))}
         </div>
