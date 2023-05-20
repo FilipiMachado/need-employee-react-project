@@ -7,9 +7,17 @@ import "./index.scss";
 export default function SearchUsers({ setIsSearching, setSearchInput }) {
   return (
     <div className="search-users">
-      <input type="text" placeholder="Search others and connect..." />
-      <AiOutlineCloseCircle
+      <input
+        type="text"
+        placeholder="Search others and connect..."
         onChange={(e) => setSearchInput(e.target.value)}
+      />
+
+      <AiOutlineCloseCircle
+        onClick={() => {
+          setIsSearching(false);
+          setSearchInput("");
+        }}
         className="close-search-icon"
         size={20}
       />

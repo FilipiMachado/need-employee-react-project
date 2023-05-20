@@ -39,10 +39,20 @@ export const getPosts = (setAllStatus) => {
   });
 };
 
-export const getAllUsers = (setAllUsers) => {
+/* export const getAllUsers = (setAllUsers) => {
   onSnapshot(userRef, (res) => {
     setAllUsers(
       res.docs.map((docs) => {
+        return { ...docs.data(), id: docs.id };
+      })
+    );
+  });
+}; */
+
+export const getAllUsers = (setAllUsers) => {
+  onSnapshot(userRef, (response) => {
+    setAllUsers(
+      response.docs.map((docs) => {
         return { ...docs.data(), id: docs.id };
       })
     );

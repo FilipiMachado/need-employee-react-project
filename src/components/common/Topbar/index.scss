@@ -50,3 +50,18 @@ $mainHoverPurple: #7243d1;
   top: 65px;
   z-index: 99;
 }
+
+.search-results {
+  position: absolute;
+  right: 40px;
+  top: 50px;
+  width: 385px;
+  height: 380px;
+  background-color: #fff;
+  border-radius: 0px 0px 10px 10px;
+  z-index: 99;
+
+  .search-wrapper {
+    
+  }
+}

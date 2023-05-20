@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import ProfilePopup from "../ProfilePopup";
 import SearchUsers from "../SearchUsers";
+import { getAllUsers } from "../../../api/FirestoreAPI";
 
 import {
   AiOutlineBell,
@@ -21,6 +22,7 @@ export default function Topbar() {
   const [popupVisible, setPopupVisible] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
   const [searchInput, setSearchInput] = useState("");
+  const [users, setUsers] = useState([]);
   const navigate = useNavigate();
 
   const redirectTo = (route) => {
@@ -30,6 +32,10 @@ export default function Topbar() {
   const displayPopup = () => {
     setPopupVisible(!popupVisible);
   };
+
+  useEffect(() => {
+    getAllUsers(setUsers);
+  }, []);
 
   return (
     <div className="topbar-main">
@@ -51,10 +57,24 @@ export default function Topbar() {
         alt="Main Logo"
       />
 
-      <div className="search-results">asdasd</div>
+      {!searchInput.length === 0 ? (
+        <></>
+      ) : (
+        <div className="search-results">
+          {users.map((user) => (
+            <div className="search-wrapper" key={user.userId}>
+              <img src={user.imageLink} alt="Profile Photo" />
+              <p className="">{user.name}</p>
+            </div>
+          ))}
+        </div>
+      )}
 
       {isSearching ? (
-        <SearchUsers />
+        <SearchUsers
+          setIsSearching={setIsSearching}
+          setSearchInput={setSearchInput}
+        />
       ) : (
         <div className="icons-wrapper">
           <AiOutlineSearch
