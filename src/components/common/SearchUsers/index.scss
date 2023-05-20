@@ -1,0 +1,42 @@
+$mainPurple: #8c52ff;
+$mainHoverPurple: #7243d1;
+
+.search-users {
+  display: flex;
+  align-items: center;
+
+  .close-search-icon {
+    margin: 0px 368px;
+    position: relative;
+    top: 1px;
+    z-index: 99;
+    color: #707070;
+    cursor: pointer;
+  }
+
+  .close-search-icon:hover {
+    color: $mainPurple;
+  }
+
+  input {
+    width: 30%;
+    height: 30px;
+    background-color: whitesmoke;
+    border: 1px solid #bbb;
+    outline: none;
+    border-radius: 10px;
+    color: #212121;
+    font-size: 16px;
+    position: absolute;
+    right: 10px;
+    top: 15px;
+  }
+
+  input:focus {
+    border: 1px solid $mainPurple;
+  }
+
+  input::placeholder {
+    padding-left: 30px;
+  }
+}
