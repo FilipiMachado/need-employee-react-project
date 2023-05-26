@@ -8,6 +8,7 @@ $mainHoverPurple: #7243d1;
   color: #212121;
   font-size: 16px;
   width: 100%;
+  resize: none;
 }
 
 .post-btn {
@@ -17,4 +18,11 @@ $mainHoverPurple: #7243d1;
 
 .post-btn:hover {
   background-color: $mainHoverPurple !important;
+}
+
+.picture-icon {
+  color: $mainPurple;
+  position: absolute;
+  bottom: 20px;
+  cursor: pointer;
 }

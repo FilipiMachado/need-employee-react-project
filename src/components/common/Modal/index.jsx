@@ -1,5 +1,7 @@
-import { Button, Modal } from "antd";
 import PropTypes from "prop-types";
+
+import { Button, Modal } from "antd";
+import { AiOutlinePicture } from "react-icons/ai";
 
 import "./index.scss";
 
@@ -11,6 +13,8 @@ const NewPostModal = ({
   setStatus,
   isEdit,
   updateStatus,
+  setCurrentImage,
+  uploadPostImage,
 }) => {
   return (
     <>
@@ -38,12 +42,24 @@ const NewPostModal = ({
           </Button>,
         ]}
       >
-        <input
+        <textarea
+          rows={3}
+          cols={3}
           onChange={(e) => setStatus(e.target.value)}
           value={status}
           className="new-post-modal-input"
           placeholder="Connect to others through your thoughts."
           type="text"
+        />
+
+        <label htmlFor="picture-upload" title="Upload Image">
+          <AiOutlinePicture size={32} className="picture-icon" />
+        </label>
+        <input
+          onClick={(e) => setCurrentImage(e.target.files[0])}
+          hidden
+          id="picture-upload"
+          type={"file"}
         />
       </Modal>
     </>
@@ -58,6 +74,7 @@ NewPostModal.propTypes = {
   setStatus: PropTypes.func.isRequired,
   isEdit: PropTypes.bool.isRequired,
   updateStatus: PropTypes.func.isRequired,
+  setCurrentImage: PropTypes.func.isRequired,
 };
 
 export default NewPostModal;

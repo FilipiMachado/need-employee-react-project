@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import NewPostModal from "../Modal";
 import PostsCard from "../PostsCard";
 
+import { uploadPostImage } from "../../../api/ImageUpload";
 import {
   postStatusData,
   getPosts,
@@ -21,6 +22,9 @@ export default function PostStatus({ currentUser }) {
   const [allStatus, setAllStatus] = useState([]);
   const [currentPost, setCurrentPost] = useState({});
   const [isEdit, setIsEdit] = useState(false);
+  const [currentImage, setCurrentImage] = useState({});
+  const [postImage, setPostImage] = useState("");
+  console.log(currentImage);
 
   const sendStatus = async () => {
     let object = {
@@ -87,6 +91,8 @@ export default function PostStatus({ currentUser }) {
         sendStatus={sendStatus}
         isEdit={isEdit}
         updateStatus={updateStatus}
+        setCurrentImage={setCurrentImage}
+        uploadPostImage={uploadPostImage}
       />
 
       <div>

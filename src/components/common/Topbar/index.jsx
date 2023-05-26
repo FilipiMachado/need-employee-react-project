@@ -34,6 +34,15 @@ export default function Topbar() {
     setPopupVisible(!popupVisible);
   };
 
+  const openUser = (user) => {
+    navigate("/profile", {
+      state: {
+        id: user.userId,
+        email: user.userEmail,
+      },
+    });
+  };
+
   const handleSearch = () => {
     if (searchInput !== "") {
       let searched = users.filter((user) => {
@@ -85,12 +94,20 @@ export default function Topbar() {
         <></>
       ) : (
         <div className="search-results">
-          {filteredUsers.map((user) => (
-            <div className="search-wrapper" key={user.userId}>
-              <img src={user.imageLink} alt="Profile Photo" />
-              <p className="username-text">{user.name}</p>
-            </div>
-          ))}
+          {filteredUsers.length === 0 ? (
+            <div>No Results Found</div>
+          ) : (
+            filteredUsers.map((user) => (
+              <div
+                onClick={() => openUser(user)}
+                className="search-wrapper"
+                key={user.userId}
+              >
+                <img src={user.imageLink} alt="Profile Photo" />
+                <p className="username-text">{user.name}</p>
+              </div>
+            ))
+          )}
         </div>
       )}
 
