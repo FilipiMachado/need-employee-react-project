@@ -36,6 +36,7 @@ export const uploadImage = (
 };
 
 export const uploadPostImage = (file, setPostImage, setProgress) => {
+  console.log(file)
   const postPicsRef = ref(storage, `postImages/${file.name}`);
   const uploadTask = uploadBytesResumable(postPicsRef, file);
 

@@ -13,8 +13,9 @@ const NewPostModal = ({
   setStatus,
   isEdit,
   updateStatus,
-  setCurrentImage,
   uploadPostImage,
+  postImage,
+  setPostImage,
 }) => {
   return (
     <>
@@ -52,11 +53,17 @@ const NewPostModal = ({
           type="text"
         />
 
+        {postImage.length > 0 ? (
+          <img src={postImage} alt="Image Uploaded" />
+        ) : (
+          <></>
+        )}
+
         <label htmlFor="picture-upload" title="Upload Image">
           <AiOutlinePicture size={32} className="picture-icon" />
         </label>
         <input
-          onClick={(e) => setCurrentImage(e.target.files[0])}
+          onClick={(e) => uploadPostImage(e.target.files[0], setPostImage)}
           hidden
           id="picture-upload"
           type={"file"}
@@ -74,7 +81,9 @@ NewPostModal.propTypes = {
   setStatus: PropTypes.func.isRequired,
   isEdit: PropTypes.bool.isRequired,
   updateStatus: PropTypes.func.isRequired,
-  setCurrentImage: PropTypes.func.isRequired,
+  uploadPostImage: PropTypes.func.isRequired,
+  setPostImage: PropTypes.func.isRequired,
+  postImage: PropTypes.string.isRequired,
 };
 
 export default NewPostModal;
