@@ -1,25 +1,23 @@
 import PropTypes from "prop-types";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Modal } from "antd";
+import { BsPencil, BsTrash } from "react-icons/bs";
 import {
   getCurrentUser,
   getAllUsers,
   deletePost,
   getConnections,
 } from "../../../api/FirestoreAPI";
-
 import LikeButton from "../LikeButton";
-
-import { BsPencil, BsTrash } from "react-icons/bs";
-
 import "./index.scss";
 
-export default function PostsCard({ posts, getEditData }) {
-  const navigate = useNavigate();
-  const [currentUser, setCurrentUser] = useState();
+export default function PostsCard({ posts, id, getEditData }) {
+  let navigate = useNavigate();
+  const [currentUser, setCurrentUser] = useState({});
   const [allUsers, setAllUsers] = useState([]);
-  const [isConnected, setIsConnected] = useState();
-
+  const [imageModal, setImageModal] = useState(false);
+  const [isConnected, setIsConnected] = useState(false);
   useMemo(() => {
     getCurrentUser(setCurrentUser);
     getAllUsers(setAllUsers);
@@ -29,66 +27,87 @@ export default function PostsCard({ posts, getEditData }) {
     getConnections(currentUser.id, posts.userId, setIsConnected);
   }, [currentUser.id, posts.userId]);
 
-  return isConnected ? (
-    <div className="posts-card">
+  return isConnected || currentUser.id === posts.userID ? (
+    <div className="posts-card" key={id}>
       <div className="post-image-wrapper">
-        {currentUser?.userId === posts?.userId ? (
+        {currentUser.id === posts.userId ? (
           <div className="action-wrapper">
             <BsPencil
-              onClick={() => getEditData(posts)}
               size={20}
               className="action-icon edit"
-              title="Edit Post"
+              onClick={() => getEditData(posts)}
             />
             <BsTrash
-              onClick={() => deletePost(posts)}
               size={20}
               className="action-icon remove"
-              title="Remove Post"
+              onClick={() => deletePost(posts.id)}
             />
           </div>
         ) : (
-          <>
-            <div></div>
-          </>
+          <></>
         )}
 
-        <div className="profile-info-container">
-          <img
-            alt="profile-image"
-            className="profile-image"
-            src={
-              allUsers
-                .filter((item) => item.userId === posts.userId)
-                .map((item) => item.imageLink)[0]
+        <img
+          alt="profile-image"
+          className="profile-image"
+          src={
+            allUsers
+              .filter((item) => item.id === posts.userId)
+              .map((item) => item.imageLink)[0]
+          }
+        />
+        <div>
+          <p
+            className="name-text"
+            onClick={() =>
+              navigate("/profile", {
+                state: { id: posts?.userId, email: posts.userEmail },
+              })
             }
-          />
-          <div className="profile-info-wrapper">
-            <p
-              onClick={() =>
-                navigate("/profile", {
-                  state: { id: posts?.userId, email: posts.userEmail },
-                })
-              }
-              className="name-text"
-            >
-              {allUsers.filter((user) => user.id === posts.userId)[0]?.name}
-            </p>
-            <p className="headline-text">
-              {allUsers.filter((user) => user.id === posts.userId)[0]?.headline}
-            </p>
-            <p className="timestamp-text">{posts.timeStamp}</p>
-          </div>
+          >
+            {allUsers.filter((user) => user.id === posts.userId)[0]?.name}
+          </p>
+          <p className="headline-text">
+            {allUsers.filter((user) => user.id === posts.userId)[0]?.headline}
+          </p>
+          <p className="timestamp-text">{posts.timeStamp}</p>
         </div>
       </div>
-
-      <p className="status-text">{posts.status}</p>
+      {posts.postImage ? (
+        <img
+          onClick={() => setImageModal(true)}
+          src={posts.postImage}
+          className="post-image"
+          alt="post-image"
+        />
+      ) : (
+        <></>
+      )}
+      <p
+        className="status-text"
+        dangerouslySetInnerHTML={{ __html: posts.status }}
+      ></p>
 
       <LikeButton
-        userId={currentUser?.userId}
+        userId={currentUser?.id}
         postId={posts.id}
         currentUser={currentUser}
       />
+
+      <Modal
+        centered
+        open={imageModal}
+        onOk={() => setImageModal(false)}
+        onCancel={() => setImageModal(false)}
+        footer={[]}
+      >
+        <img
+          onClick={() => setImageModal(true)}
+          src={posts.postImage}
+          className="post-image modal"
+          alt="post-image"
+        />
+      </Modal>
     </div>
   ) : (
     <></>
@@ -97,5 +116,6 @@ export default function PostsCard({ posts, getEditData }) {
 
 PostsCard.propTypes = {
   posts: PropTypes.object.isRequired,
+  id: PropTypes.string,
   getEditData: PropTypes.func.isRequired,
 };

@@ -53,9 +53,7 @@ export default function Topbar() {
       });
 
       setFilteredUsers(searched);
-    } else {
-      console.log("user");
-    }
+    } else { /* empty */ }
   };
 
   useEffect(() => {
