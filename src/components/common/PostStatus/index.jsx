@@ -23,7 +23,6 @@ export default function PostStatus({ currentUser }) {
   const [currentPost, setCurrentPost] = useState({});
   const [isEdit, setIsEdit] = useState(false);
   const [postImage, setPostImage] = useState("");
-  console.log(postImage);
 
   const sendStatus = async () => {
     let object = {
@@ -33,10 +32,11 @@ export default function PostStatus({ currentUser }) {
       userName: currentUser.name,
       postId: getUniqueId(),
       userId: currentUser.userId,
+      postImage: postImage,
     };
     await postStatusData(object);
     await setNewPostModalOpen(false);
-    setIsEdit(false);
+    await setIsEdit(false);
     await setStatus("");
   };
 

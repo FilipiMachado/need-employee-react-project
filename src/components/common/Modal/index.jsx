@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
+import { useState } from "react";
 
-import { Button, Modal } from "antd";
+import { Button, Modal, Progress } from "antd";
 import { AiOutlinePicture } from "react-icons/ai";
 
 import "./index.scss";
@@ -17,6 +18,8 @@ const NewPostModal = ({
   postImage,
   setPostImage,
 }) => {
+  const [progress, setProgress] = useState(0);
+
   return (
     <>
       <Modal
@@ -26,10 +29,12 @@ const NewPostModal = ({
         onOk={() => {
           setStatus("");
           setModalOpen(false);
+          setPostImage("");
         }}
         onCancel={() => {
           setStatus("");
           setModalOpen(false);
+          setPostImage("");
         }}
         footer={[
           <Button
@@ -43,27 +48,42 @@ const NewPostModal = ({
           </Button>,
         ]}
       >
-        <textarea
-          rows={3}
-          cols={3}
-          onChange={(e) => setStatus(e.target.value)}
-          value={status}
-          className="new-post-modal-input"
-          placeholder="Connect to others through your thoughts."
-          type="text"
-        />
+        <div className="posts-body">
+          <textarea
+            rows={3}
+            cols={3}
+            onChange={(e) => setStatus(e.target.value)}
+            value={status}
+            className="new-post-modal-input"
+            placeholder="Connect to others through your thoughts."
+            type="text"
+          />
 
-        {postImage.length > 0 ? (
-          <img src={postImage} alt="Image Uploaded" />
-        ) : (
-          <></>
-        )}
+          {progress === 0 || progress === 100 ? (
+            <></>
+          ) : (
+            <div className="progress-bar">
+              <Progress type="line" percent={progress} />
+            </div>
+          )}
+          {postImage.length > 0 ? (
+            <img
+              className="preview-image"
+              src={postImage}
+              alt="Image Uploaded"
+            />
+          ) : (
+            <></>
+          )}
+        </div>
 
         <label htmlFor="picture-upload" title="Upload Image">
           <AiOutlinePicture size={32} className="picture-icon" />
         </label>
         <input
-          onClick={(e) => uploadPostImage(e.target.files[0], setPostImage)}
+          onClick={(e) =>
+            uploadPostImage(e.target.files[0], setPostImage, setProgress)
+          }
           hidden
           id="picture-upload"
           type={"file"}
