@@ -36,7 +36,7 @@ export default function PostStatus({ currentUser }) {
     };
     await postStatusData(object);
     await setNewPostModalOpen(false);
-    await setIsEdit(false);
+    setIsEdit(false);
     await setStatus("");
   };
 
@@ -55,6 +55,8 @@ export default function PostStatus({ currentUser }) {
   useMemo(() => {
     getPosts(setAllStatus);
   }, []);
+
+  console.log(currentPost)
 
   return (
     <div className="post-status-wrapper">
@@ -93,6 +95,7 @@ export default function PostStatus({ currentUser }) {
         uploadPostImage={uploadPostImage}
         postImage={postImage}
         setPostImage={setPostImage}
+        currentPost={currentPost}
       />
 
       <div>

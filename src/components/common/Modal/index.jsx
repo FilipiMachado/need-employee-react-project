@@ -17,7 +17,10 @@ const NewPostModal = ({
   uploadPostImage,
   postImage,
   setPostImage,
+  currentPost,
 }) => {
+  console.log(currentPost?.postImage)
+
   const [progress, setProgress] = useState(0);
 
   return (
@@ -104,6 +107,7 @@ NewPostModal.propTypes = {
   uploadPostImage: PropTypes.func.isRequired,
   setPostImage: PropTypes.func.isRequired,
   postImage: PropTypes.string.isRequired,
+  currentPost: PropTypes.object.isRequired,
 };
 
 export default NewPostModal;
